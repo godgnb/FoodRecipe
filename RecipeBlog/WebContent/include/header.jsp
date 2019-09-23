@@ -4,7 +4,7 @@
 
 <!-- Logo Area -->
 <div class="logo-area">
-    <a href="index.jsp"><img src="img/core-img/logo.png" alt=""></a>
+    <a href="../index.jsp"><img src="../img/core-img/logo.png" alt=""></a>
 </div>
 
 <!-- Navbar Area -->
@@ -15,7 +15,7 @@
             <nav class="classy-navbar justify-content-between" id="buenoNav">
 
                 <!-- Toggler -->
-                <div id="toggler"><img src="img/core-img/toggler.png" alt=""></div>
+                <div id="toggler"><img src="../img/core-img/toggler.png" alt=""></div>
 
                 <!-- Navbar Toggler -->
                 <div class="classy-navbar-toggler">
@@ -33,13 +33,13 @@
                     <!-- Nav Start -->
                     <div class="classynav">
                         <ul>
-                            <li><a href="index.jsp">Home</a></li>
+                            <li><a href="../index.jsp">Home</a></li>
                             <li><a href="#">Recipes</a>
                                 <ul class="dropdown">
-                                    <li><a href="catagory.jsp">10분 간단 Recipes</a></li>
-                                    <li><a href="catagory-post.jsp">자취생 Recipes</a></li>
-                                    <li><a href="single-post.jsp">편의점 Recipes</a></li>
-                                    <li><a href="receipe.jsp">한끼 든든 Recipes</a></li>
+                                    <li><a href="../remain/catagory.jsp">10분 간단 Recipes</a></li>
+                                    <li><a href="../remain/catagory-post.jsp">자취생 Recipes</a></li>
+                                    <li><a href="../remain/single-post.jsp">편의점 Recipes</a></li>
+                                    <li><a href="../remain/receipe.jsp">한끼 든든 Recipes</a></li>
                                     <li><a href="#">전문가 Recipes</a></li>
                                 </ul>
                             </li>
@@ -62,7 +62,7 @@
 
                         <!-- Login/Register -->
                         <div class="login-area">
-                            <a href="#">Login / Register</a>
+                            <a href="../member/login.jsp">Login / Register</a>
                         </div>
                     </div>
                     <!-- Nav End -->

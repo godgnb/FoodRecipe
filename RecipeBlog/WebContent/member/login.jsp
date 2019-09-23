@@ -72,11 +72,11 @@
 
                         <!-- Reply Form -->
                         <div class="contact-form-area">
-                            <form action="#" method="post">
+                            <form action="#" method="get" id="">
                                 <div class="row">
                                     <div class="col-6">
-                                        <input type="text" class="form-control" id="subject" placeholder="Id">
-                                        <input type="text" class="form-control" id="subject" placeholder="Passward">
+                                        <input type="text" class="form-control" id="subject" name="id" placeholder="Id">
+                                        <input type="text" class="form-control" id="subject" name="passwd" placeholder="Passward">
                                         <button class="btn bueno-btn mt-30" type="submit">Login</button>
                                         <button class="btn bueno-btn mt-30" type="button" onclick="location='register.jsp'">Register</button>
                                         

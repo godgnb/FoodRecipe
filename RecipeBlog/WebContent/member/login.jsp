@@ -27,6 +27,27 @@
 	 	 	width: 320px;
 	 	 }
 	</style>
+<!--  	<script src="../js/jquery/jquery-2.2.4.min.js"></script>
+	<script>
+		$(document).ready(function () {
+			$('#frm').blur(function () {
+				var id = $('#id').value;
+				var passwd = $('#passwd').value;
+				
+				$.ajax({
+					url: 'loginProcess.jsp',
+					method: "POST",
+					data: {id: id, passwd: passwd},				
+					success: function (data) {
+						if (data.check != 1) {
+							$('#com_login').append('아이디 혹은 패스워드가 일치하지 않습니다.').css('color', 'red');
+						}
+					}
+				});
+			});
+		});
+	
+	</script> -->
 </head>
 
 <body>
@@ -72,12 +93,13 @@
 
                         <!-- Reply Form -->
                         <div class="contact-form-area">
-                            <form action="#" method="get" id="">
+                            <form action="" method="post" name="frm" id="frm">
                                 <div class="row">
                                     <div class="col-6">
-                                        <input type="text" class="form-control" id="subject" name="id" placeholder="Id">
-                                        <input type="text" class="form-control" id="subject" name="passwd" placeholder="Passward">
-                                        <button class="btn bueno-btn mt-30" type="submit">Login</button>
+                                        <input type="text" class="form-control" id="id" name="id" placeholder="Id">
+                                        <input type="text" class="form-control" id="passwd" name="passwd" placeholder="Passward">
+                                        <span id="com_login"></span>
+                                        <input class="btn bueno-btn mt-30" type="submit" value="Login" id="login">
                                         <button class="btn bueno-btn mt-30" type="button" onclick="location='register.jsp'">Register</button>
                                         
                                     </div>

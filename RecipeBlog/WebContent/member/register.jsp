@@ -108,22 +108,17 @@
 			$('#register').click(function () {
 				if ($('#id').val() == '') {
 					$('#id').focus();
-					$('#com_id').text('아이디가 공백입니다.');
 				}else if ($('#passwd').val() == '') {
 					$('#passwd').focus();
-					$('#com_passwd').text('패스워드가 공백입니다.');
 				}else if ($('#passwd').val() != $('#passwd2').val()) {
 					$('#passwd2').focus();
 					$('#com_passwd2').text('패스워드가 일치하지 않습니다.');
 				}else if ($('#name').val() == '') {
 					$('#name').focus();
-					$('#com_name').text('이름이 공백입니다.');
 				}else if ($('#phone').val() == '') {
 					$('#phone').focus();
-					$('#com_phone').text('휴대폰 번호가 공백입니다.');
 				}else if ($('#email').val() == '') {
 					$('#email').focus();
-					$('#com_email').text('이메일 주소가 공백입니다.');
 				}else {
 					$('#join').submit();
 				}

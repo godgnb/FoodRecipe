@@ -37,94 +37,7 @@
 		 	 margin: 0 0 30px 95px;
 	 	 }
 	</style>
-	<script src="../js/jquery/jquery-2.2.4.min.js"></script>
-	<script>
-		$(document).ready(function () {
-			$('#id').focus();
-			$('#id').blur(function () {
-				if ($('#id').val().length == 0) {
-					$('#com_id').text('필수입력 사항입니다.').css('color', 'red');
-				}
-				else if ($('#id').val().length < 5 || $('#id').val().length > 15) {
-					$('#com_id').text('5~15글자의 영문 대소문자, 숫자만 사용가능합니다').css('color', 'red');
-					$('#id').focus();
-				} else {
-					$('#com_id').text('좋은 아이디입니다').css('color', 'blue');
-					$('#passwd').focus();
-				}
-			}); // id
-			
-			$('#passwd').blur(function () {
-				if ($('#passwd').val().length == 0) {
-					$('#com_passwd').text('필수입력 사항입니다.').css('color', 'red');
-				}
-				else if ($('#passwd').val().length < 8 || $('#passwd').val().length > 16) {
-					$('#com_passwd').text('8~16글자의 영문 대소문자, 숫자만 사용가능합니다').css('color', 'red');
-					$('#passwd').focus();
-				} else {
-					$('#com_passwd').text('');
-					$('#passwd2').focus();
-				}
-			}); // passwd
-			
-			$('#passwd2').blur(function () {
-				if ($('#passwd2').val().length == 0) {
-					$('#com_passwd2').text('필수입력 사항입니다.').css('color', 'red');
-				}
-				else if ($('#passwd').val() != $('#passwd2').val()) {
-					$('#com_passwd2').text('패스워드가 일치하지 않습니다.').css('color', 'red');
-				} else {
-					$('#com_passwd2').text('패스워드가 일치합니다.').css('color', 'blue');
-					$('#name').focus();
-				}
-			}); // passwd2
-			
-			$('#name').blur(function () {
-				if ($('#name').val().length == 0) {
-					$('#com_name').text('필수입력 사항입니다.').css('color', 'red');
-				} else {
-					$('#com_name').text('');
-					$('#phone').focus();
-				}
-			}); // name
-			
-			$('#phone').blur(function () {
-				if ($('#phone').val().length == 0) {
-					$('#com_phone').text('필수입력 사항입니다.').css('color', 'red');
-				} else {
-					$('#com_phone').text('');
-					$('#email').focus();
-				}
-			}); // phone
-			
-			$('#email').blur(function () {
-				if ($('#email').val().length == 0) {
-					$('#com_email').text('필수입력 사항입니다.').css('color', 'red');
-				} else {
-					$('#com_email').text('');
-				}
-			}); // phone
-			
-			$('#register').click(function () {
-				if ($('#id').val() == '') {
-					$('#id').focus();
-				}else if ($('#passwd').val() == '') {
-					$('#passwd').focus();
-				}else if ($('#passwd').val() != $('#passwd2').val()) {
-					$('#passwd2').focus();
-					$('#com_passwd2').text('패스워드가 일치하지 않습니다.');
-				}else if ($('#name').val() == '') {
-					$('#name').focus();
-				}else if ($('#phone').val() == '') {
-					$('#phone').focus();
-				}else if ($('#email').val() == '') {
-					$('#email').focus();
-				}else {
-					$('#join').submit();
-				}
-			}); // register
-		}); // document
-	</script>
+	
 </head>
 
 <body>
@@ -206,6 +119,104 @@
 
     <!-- ##### All Javascript Script ##### -->
 		<jsp:include page="../include/common_script.jsp" />
+
+<script>
+	$('#id').blur(function () {
+		var id = $(this).val();
+
+		$.ajax({
+			url: 'registerIdDupCheck.jsp',
+			data: {id: id},
+			success: function (data) {
+
+
+			if (data == true) {
+				$('#com_id').text('중복된 아이디입니다.').css('color', 'red');
+			} else {
+				if (id.length < 5 || id.length > 15) {
+				$('#com_id').text('5~15글자의 영문 대소문자, 숫자만 사용가능합니다').css('color', 'red');
+				} else {
+					$('#com_id').text('좋은 아이디입니다.').css('color', 'blue');
+				}
+				
+			}	
+						
+ 			}
+		});		
+		 
+	}); // id
+	
+	$('#passwd').blur(function () {
+		if ($('#passwd').val().length == 0) {
+			$('#com_passwd').text('필수입력 사항입니다.').css('color', 'red');
+		}
+		else if ($('#passwd').val().length < 8 || $('#passwd').val().length > 16) {
+			$('#com_passwd').text('8~16글자의 영문 대소문자, 숫자만 사용가능합니다').css('color', 'red');
+			$('#passwd').focus();
+		} else {
+			$('#com_passwd').text('');
+			$('#passwd2').focus();
+		}
+	}); // passwd
+	
+	$('#passwd2').blur(function () {
+		if ($('#passwd2').val().length == 0) {
+			$('#com_passwd2').text('필수입력 사항입니다.').css('color', 'red');
+		}
+		else if ($('#passwd').val() != $('#passwd2').val()) {
+			$('#com_passwd2').text('패스워드가 일치하지 않습니다.').css('color', 'red');
+		} else {
+			$('#com_passwd2').text('패스워드가 일치합니다.').css('color', 'blue');
+			$('#name').focus();
+		}
+	}); // passwd2
+	
+	$('#name').blur(function () {
+		if ($('#name').val().length == 0) {
+			$('#com_name').text('필수입력 사항입니다.').css('color', 'red');
+		} else {
+			$('#com_name').text('');
+			$('#phone').focus();
+		}
+	}); // name
+	
+	$('#phone').blur(function () {
+		if ($('#phone').val().length == 0) {
+			$('#com_phone').text('필수입력 사항입니다.').css('color', 'red');
+		} else {
+			$('#com_phone').text('');
+			$('#email').focus();
+		}
+	}); // phone
+	
+	$('#email').blur(function () {
+		if ($('#email').val().length == 0) {
+			$('#com_email').text('필수입력 사항입니다.').css('color', 'red');
+		} else {
+			$('#com_email').text('');
+		}
+	}); // phone
+	
+	$('#register').click(function () {
+		if ($('#id').val() == '') {
+			$('#id').focus();
+		}else if ($('#passwd').val() == '') {
+			$('#passwd').focus();
+		}else if ($('#passwd').val() != $('#passwd2').val()) {
+			$('#passwd2').focus();
+			$('#com_passwd2').text('패스워드가 일치하지 않습니다.');
+		}else if ($('#name').val() == '') {
+			$('#name').focus();
+		}else if ($('#phone').val() == '') {
+			$('#phone').focus();
+		}else if ($('#email').val() == '') {
+			$('#email').focus();
+		}else {
+			$('#join').submit();
+		}
+	}); // register
+
+</script>
 </body>
 
 </html>

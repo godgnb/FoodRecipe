@@ -2,18 +2,11 @@
 <%@ page language="java" contentType="application/json; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-request.setCharacterEncoding("utf-8");
-
 String id = request.getParameter("id");
-String passwd = request.getParameter("passwd");
 
 MemberDao memberDao = MemberDao.getInstance();
 
-int check = memberDao.userCheck(id, passwd);
+boolean isIdDup = memberDao.isIdDupCheck(id);
 
-if (check == 1) {
-	session.setAttribute("id", id);
-	
-}
 %>
-<%=check %>
+<%=isIdDup %>

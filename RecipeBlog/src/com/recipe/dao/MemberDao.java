@@ -15,6 +15,41 @@ public class MemberDao {
 	public MemberDao() {
 	}
 	
+	public boolean isIdDupCheck(String id) {
+		boolean isIdDupCheck = false;
+		
+		int count = 0;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "";
+		
+		try {
+			con = DBManager.getConnection();
+			sql = "SELECT COUNT(*) FROM member WHERE id =?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			
+			rs.next();
+			
+			count = rs.getInt(1);
+			if (count == 1) {
+				isIdDupCheck = true;
+			} else {
+				isIdDupCheck = false;
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(con, pstmt);
+		}
+		
+		
+		return isIdDupCheck;
+	} // isIdDupCheck
+	
 	public int insertMember(MemberVO vo) {
 		
 		int rowCount = 0;

@@ -27,27 +27,6 @@
 	 	 	width: 320px;
 	 	 }
 	</style>
-<!--  	<script src="../js/jquery/jquery-2.2.4.min.js"></script>
-	<script>
-		$(document).ready(function () {
-			$('#frm').blur(function () {
-				var id = $('#id').value;
-				var passwd = $('#passwd').value;
-				
-				$.ajax({
-					url: 'loginProcess.jsp',
-					method: "POST",
-					data: {id: id, passwd: passwd},				
-					success: function (data) {
-						if (data.check != 1) {
-							$('#com_login').append('아이디 혹은 패스워드가 일치하지 않습니다.').css('color', 'red');
-						}
-					}
-				});
-			});
-		});
-	
-	</script> -->
 </head>
 
 <body>
@@ -99,7 +78,7 @@
                                         <input type="text" class="form-control" id="id" name="id" placeholder="Id">
                                         <input type="text" class="form-control" id="passwd" name="passwd" placeholder="Passward">
                                         <span id="com_login"></span>
-                                        <input class="btn bueno-btn mt-30" type="submit" value="Login" id="login">
+                                        <button class="btn bueno-btn mt-30" type="button" id="loginbtn">Login</button>
                                         <button class="btn bueno-btn mt-30" type="button" onclick="location='register.jsp'">Register</button>
                                         
                                     </div>
@@ -123,6 +102,35 @@
 
     <!-- ##### All Javascript Script ##### -->
 		<jsp:include page="../include/common_script.jsp" />
+
+<script>
+$('#loginbtn').click(function () {
+	var id = $('#id').val();
+	var passwd = $('#passwd').val();
+	
+	$.ajax({
+		url: 'loginProcess.jsp',
+		data: {id: id, passwd: passwd},
+		success: function (data) {
+			console.log(typeof data);
+			console.log(data);
+			
+			idDupMessage(data);
+		}
+	});
+});
+
+function idDupMessage(check) {
+	if (check == 1) {
+		$('#com_login').html('');
+		location.href = '../main/main.jsp';
+	} else {
+		$('#com_login').html('아이디 혹은 패스워드가 일치하지 않습니다.').css('color', 'red');
+	}
+	
+}
+	
+	</script> 
 </body>
 
 </html>

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <header class="header-area">
 
 <!-- Head Photo Area -->
@@ -103,8 +105,16 @@
                         </ul>
 
                         <!-- Login/Register -->
+                        
                         <div class="login-area">
-                            <a href="../member/login.jsp">Login / Register</a>
+                       	    <c:if test="${id == null}">
+                            	<a href="../member/login.jsp">Login / Register</a>
+                            </c:if>
+                            <c:if test="${id != null}">
+                            	${id}님
+                            	<a href="../member/logout.jsp"> Logout</a> 
+                            </c:if>
+                            
                         </div>
                     </div>
                     <!-- Nav End -->

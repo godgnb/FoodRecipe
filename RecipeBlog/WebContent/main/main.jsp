@@ -30,9 +30,9 @@
     <!-- ##### Header Area End ##### -->
 
 
-    <!-- ##### Treading Post Area Start ##### -->
+    <!-- ##### Ranking Area Start ##### -->
     	<jsp:include page="../include/ranking.jsp" />
-    <!-- ##### Treading Post Area End ##### -->
+    <!-- ##### Ranking Area End ##### -->
 
 
     <!-- ##### Hero Area Start ##### -->
@@ -212,7 +212,7 @@
 
     <!-- ##### Footer Area Start ##### -->
     	<jsp:include page="../include/footer.jsp" />
-    <!-- ##### Footer Area Start ##### -->
+    <!-- ##### Footer Area End ##### -->
 
 
     <!-- ##### All Javascript Script ##### -->

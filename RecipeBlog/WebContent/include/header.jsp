@@ -100,7 +100,7 @@
 <!--                                     </ul> -->
 <!--                                 </div> -->
 <!--                             </li> -->
-                            <li><a href="#">Cooking Tip</a></li>
+                            <li><a href="../cooking_tip/tip_list.jsp">Cooking Tip</a></li>
                             <li><a href="#">Contact</a></li>
                         </ul>
 

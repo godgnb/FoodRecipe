@@ -55,9 +55,7 @@
 
 
     <!-- ##### Search Area Start ##### -->
-    <div class="bueno-search-area section-padding-100-0 pb-70 bg-img" style="background-image: url(../img/core-img/pattern.png);">
-
-    </div>
+    <div class="bueno-search-area section-padding-100-0 pb-70 bg-img" style="background-image: url(../img/core-img/pattern.png);"></div>
     <!-- ##### Search Area End ##### -->
     
     
@@ -81,7 +79,7 @@
                     <div class="post-a-comment-area mb-30 clearfix">
                         <h4 class="form_title">Register</h4>
 
-                        <!-- Reply Form -->
+                        <!-- Register Form -->
                         <div class="contact-form-area">
                             <form name="frm" action="registerProcess.jsp" method="get" id="join">
                                 <div class="row" >
@@ -97,7 +95,7 @@
                                         <input type="tel" class="form-control" id="phone" name="phone" placeholder="Phone Number">
                                         <span id="com_phone"></span>
                                         <input type="text" class="form-control" id="email" name="email" placeholder="E-mail">
-                                        <span id="com_email"></span>
+                                        <span id="com_email"></span><br>
                                         
                                         <input class="btn bueno-btn mt-30" type="button" value="Register" id="register">
                                         <button class="btn bueno-btn mt-30" type="button" onclick="location='login.jsp'">Cancel</button>
@@ -116,6 +114,7 @@
     <!-- ##### Footer Area Start ##### -->
 		<jsp:include page="../include/footer.jsp" />
     <!-- ##### Footer Area Start ##### -->
+
 
     <!-- ##### All Javascript Script ##### -->
 		<jsp:include page="../include/common_script.jsp" />

@@ -29,9 +29,11 @@
     	<jsp:include page="../include/header.jsp" />
     <!-- ##### Header Area End ##### -->
 
+
     <!-- ##### Treading Post Area Start ##### -->
     	<jsp:include page="../include/ranking.jsp" />
     <!-- ##### Treading Post Area End ##### -->
+
 
     <!-- ##### Search Area Start ##### -->
     <div class="bueno-search-area section-padding-100-0 pb-70 bg-img" style="background-image: url(../img/core-img/pattern.png);">
@@ -87,6 +89,7 @@
         </div>
     </div>
     <!-- ##### Search Area End ##### -->
+
 
     <!-- ##### Catagory Area Start ##### -->
     <div class="post-catagory section-padding-100">
@@ -240,6 +243,7 @@
     <!-- ##### Footer Area Start ##### -->
     	<jsp:include page="../include/footer.jsp" />
     <!-- ##### Footer Area Start ##### -->
+
 
     <!-- ##### All Javascript Script ##### -->
 		<jsp:include page="../include/common_script.jsp" />

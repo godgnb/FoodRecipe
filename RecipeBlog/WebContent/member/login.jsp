@@ -44,9 +44,7 @@
 
 
     <!-- ##### Search Area Start ##### -->
-    <div class="bueno-search-area section-padding-100-0 pb-70 bg-img" style="background-image: url(../img/core-img/pattern.png);">
-
-    </div>
+    <div class="bueno-search-area section-padding-100-0 pb-70 bg-img" style="background-image: url(../img/core-img/pattern.png);"></div>
     <!-- ##### Search Area End ##### -->
     
     
@@ -70,7 +68,7 @@
                     <div class="post-a-comment-area mb-30 clearfix">
                         <h4 class="mb-30" style="font-size: 40px">Login</h4>
 
-                        <!-- Reply Form -->
+                        <!-- Login Form -->
                         <div class="contact-form-area">
                             <form action="" method="post" name="frm" id="frm">
                                 <div class="row">
@@ -99,6 +97,7 @@
     <!-- ##### Footer Area Start ##### -->
 		<jsp:include page="../include/footer.jsp" />
     <!-- ##### Footer Area Start ##### -->
+
 
     <!-- ##### All Javascript Script ##### -->
 		<jsp:include page="../include/common_script.jsp" />

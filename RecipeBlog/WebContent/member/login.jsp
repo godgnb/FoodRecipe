@@ -21,7 +21,7 @@
 	
 	<style>
 		.comment_area1 {
-	 	 	border-bottom: 1px solid #eaeaea;
+	 	 	border-bottom: 1px solid #b1a8a8;
 	 	 }
 	 	 .contact-form-area .form-control{
 	 	 	width: 320px;

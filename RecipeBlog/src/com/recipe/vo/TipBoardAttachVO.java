@@ -1,6 +1,6 @@
 package com.recipe.vo;
 
-public class TipListAttachVO {
+public class TipBoardAttachVO {
 	private String uuid;
 	private String uploadpath;
 	private String filename;
@@ -47,4 +47,4 @@ public class TipListAttachVO {
 		return builder.toString();
 	}
 	
-} // TipListAttachVO
+} // TipBoardAttachVO

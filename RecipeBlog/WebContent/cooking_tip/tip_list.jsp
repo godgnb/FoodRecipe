@@ -1,5 +1,5 @@
-<%@page import="com.recipe.vo.TipListVO"%>
-<%@page import="com.recipe.dao.TipListDao"%>
+<%@page import="com.recipe.vo.TipBoardVO"%>
+<%@page import="com.recipe.dao.TipBoardDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -47,12 +47,11 @@
 </style>
 </head>
 <%
-// DAO 객체 준비
-TipListDao tipListDao = TipListDao.getInstance();
+	// DAO 객체 준비
+TipBoardDao tipListDao = TipBoardDao.getInstance();
 
 // tiplist테이블 전체글개수 가져오기 메소드
-int count = tipListDao.getListCount();
-
+int count = tipListDao.getboardCount();
 %>
 <body>
     <!-- Preloader -->

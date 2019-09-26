@@ -2,7 +2,7 @@ package com.recipe.vo;
 
 import java.sql.Timestamp;
 
-public class TipListVO {
+public class TipBoardVO {
 	private int num;
 	private String id;
 	private String passwd;

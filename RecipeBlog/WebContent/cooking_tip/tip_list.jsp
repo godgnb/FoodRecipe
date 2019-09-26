@@ -47,11 +47,17 @@
 </style>
 </head>
 <%
-	// DAO 객체 준비
-TipBoardDao tipListDao = TipBoardDao.getInstance();
+//파라미터값 search pageNum 가져오기
+String search = request.getParameter("search");
+String strPageNum = request.getParameter("pageNum");
+
+
+// DAO 객체 준비
+TipBoardDao tipBoardDao = TipBoardDao.getInstance();
 
 // tiplist테이블 전체글개수 가져오기 메소드
-int count = tipListDao.getboardCount();
+int count = tipBoardDao.getboardCount();
+
 %>
 <body>
     <!-- Preloader -->

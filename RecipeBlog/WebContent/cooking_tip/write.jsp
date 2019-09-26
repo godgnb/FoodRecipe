@@ -25,7 +25,8 @@
 .list-form {
 	position: relative;
 	z-index: 2;
-	height: 40px;
+	height: 54px;
+	width: 100%;
 	background-color: $white-color;
 	font-size: 12px;
 	margin-bottom: 15px;
@@ -35,16 +36,25 @@
 	padding: 15px 30px;
 	font-weight: 500;
 	color: black;
-
 } 
-#tiplist {
-	position: relative;
-	margin-left: 50px;
-	
-}
-#frm {
+.frm {
 	position: relative;
 	width: 100%;
+}
+.list-form-textarea {
+	position: relative;
+	z-index: 2;
+	width: 100%;
+	background-color: $white-color;
+	font-size: 12px;
+	margin-bottom: 15px;
+	border: 1px solid #dadfe5;
+	border-bottom: 2px solid #dadfe5;
+	border-radius: 0;
+	padding: 15px 30px;
+	font-weight: 500;
+	color: black;
+	resize: none;
 }
 </style>
 <body>
@@ -129,33 +139,29 @@
                     <!-- Single Blog Post -->
                     <div class="single-blog-post style-1 d-flex flex-wrap mb-30">
                         <!-- Blog Thumbnail -->
-                        <form action="" method="post" id="frm" name="frm">
-	                        	<table id="tiplist">
-		                            <tr>
-		                            	<th width="60">작성자</th>
-		                            	<td>
-		                            		<input type="text" class="list-form" id="id" name="id">
-		                            	</td>
-		                            </tr>
-		                             <tr>
-		                            	<th>패스워드</th>
-		                            	<td>
-		                            		<input type="text" class="list-form" id="passwd" name="passwd">
-		                            	</td>
-		                            </tr>
-		                            <tr>
-		                            	<th>제목</th>
-		                            	<td>
-		                            		<input type="text" class="list-form" id="subject" name="subject">
-		                            	</td>
-		                            </tr>
-		                            <tr>
-		                            	<th>내용</th>
-		                            	<td>
-		                            		<textarea class="list-form-textarea" id="content" name="content" rows="13" cols="40"></textarea>
-		                            	</td>
-		                            </tr>
-	                       		</table>
+                        <form action="writeProcess.jsp" method="post" id="frm" name="frm" class="frm">
+                        	<div class="row">
+	                            <div class="col-12 col-lg-6">
+	                                <input type="text" class="list-form" name="id" value="${id}" readonly>
+	                            </div>
+	                            <div class="col-12 col-lg-6">
+	                                <input type="password" class="list-form" name="passwd" placeholder="Passward*">
+	                            </div>
+	                            <div class="col-12">
+	                                <input type="text" class="list-form" name="subject" placeholder="Subject*">
+	                            </div>
+	                            <div class="col-12">
+	                                <input type="file" class="list-form" name="imgfile" placeholder="">
+	                            </div>
+	                            <div class="col-12">
+	                                <textarea class="list-form-textarea" name="content" rows="17" placeholder="Content*"></textarea>
+	                            </div>
+	                            <div class="listwirte">
+		                   			<input class="btn bueno-btn mt-30 mr-15" type="submit" value="글쓰기" >
+		                   			<input class="btn bueno-btn mt-30 mr-15" type="reset" value="다시쓰기" >
+		                   			<input class="btn bueno-btn mt-30 mr-15" type="button" value="목록보기" onclick="location.href='tip_list.jsp';">
+		                        </div>
+	                        </div>
 	                    </form>    
                     </div>
                 </div>
@@ -163,18 +169,6 @@
                 <!-- Sidebar Area -->
                 <jsp:include page="../include/post_sidebar.jsp" />
                 
-            </div>
-
-            <div class="row">
-                <div class="col-12">
-                    <div class="pagination-area mt-70">
-                        <div class="listwirte">
-                   			<input class="btn bueno-btn mt-30 mr-15" type="submit" value="글쓰기" >
-                   			<input class="btn bueno-btn mt-30 mr-15" type="reset" value="다시쓰기" >
-                   			<input class="btn bueno-btn mt-30 mr-15" type="button" value="목록보기" onclick="location.href='tip_list.jsp';">
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>

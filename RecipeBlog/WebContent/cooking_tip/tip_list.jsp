@@ -1,3 +1,4 @@
+<%@page import="com.recipe.vo.TipListVO"%>
 <%@page import="com.recipe.dao.TipListDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -20,11 +21,38 @@
 
     <!-- Stylesheet -->
     <link rel="stylesheet" href="../css/style.css">
+
+<style>
+.media {
+    border-bottom: 1px solid #ebebeb;
+    padding: 0 0 22px 0;
+}
+.media-left {
+    padding-right: 25px;
+    display: table-cell;
+}
+.media-body{
+	padding: 30px 0 30px;
+	display: table-cell;
+    vertical-align: middle;
+}
+.info_writer {
+    font-size: 12px;
+    color: #777;
+    margin: 0;
+    display: inline-block;
+}
+
+
+</style>
 </head>
 <%
+// DAO 객체 준비
 TipListDao tipListDao = TipListDao.getInstance();
 
+// tiplist테이블 전체글개수 가져오기 메소드
 int count = tipListDao.getListCount();
+
 %>
 <body>
     <!-- Preloader -->
@@ -102,62 +130,88 @@ int count = tipListDao.getListCount();
         	<div class="title" style="margin-bottom: 40px; border-bottom: 1px solid #b1a8a8;">
         		<h2><%=count %>개의 행복한 팁이 있습니다</h2>
         	</div>
-            <div class="row justify-content-center">
+        	<%
+        	if (count > 0) {
+ 				%>
+	        	<div class="row justify-content-center">
                 <!-- Post Area -->
-                <div class="col-12 col-lg-8 col-xl-9">
-                    <!-- Single Blog Post -->
-                    <div class="single-blog-post style-1 d-flex flex-wrap mb-30">
-                        <!-- Blog Thumbnail -->
-                        <table id="" border="1">
-                        	<tr>
-                        		<td>
-                        			<div class="">
-										<img src="../img/bg-img/9.jpg" alt="">
-									</div>
-                        		</td>
-                        		<td>
-                        			<div class="">
-										<a href="#" class="post-tag">The Best</a>
-										<a href="#" class="post-title">Friend eggs with ham</a>
-										<div class="">
-											<a href="#" class="post-date">July 11, 2018</a>
-											<a href="#" class="post-author">By Julia Stiles</a>
-										</div>
-										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tristique justo id elit bibendum pharetra non vitae lectus. Mauris libero felis, dapibus a ultrices sed, commodo vitae odio. Sed auctor tellus quis arcu tempus.</p>
-									</div>
-                        		</td>
-                        	</tr>
-                        </table>
-                    </div>
-                </div>
+	                <div class="col-12 col-lg-8 col-xl-9">
+	                    <!-- Single Blog Post -->
+	                    <div class="media">
+	                        <!-- Media Area -->
+	                     	<div class="media-left">
+								<a href="">
+									<img src="../img/bg-img/9.jpg" alt="" style="width: 200px;height: 130px;">
+								</a>
+							</div>
+	                      	<div class="media-body">
+	                      		<h4 class="media-heading" id="media-heading"><a href="#">환절기 감기예방, 목감기에 좋은 은행</a></h4>
+				                <p class="info_writer">만개의레시피<span>|</span>2016-08-29 오전 11:39<span>|</span><span class="cate_view">7,448</span><span>|</span><span class="cate_comment">1</span></p>
+							</div>
+	                    </div>
+	                    <!-- Search Area -->
+	                    <div class="pagination-area mt-70">
+	                        <nav aria-label="Page navigation example">
+	                            <ul class="pagination">
+	                                <li class="page-item"><a class="page-link" href="#">01</a></li>
+	                                <li class="page-item active"><a class="page-link" href="#">02</a></li>
+	                                <li class="page-item"><a class="page-link" href="#">03</a></li>
+	                            </ul>
+	                        </nav>
+	                        <div class="listwirte">
+	                      		<c:if test="${id == null}">
+	                      			<input class="btn bueno-btn mt-30" type="button" value="글쓰기" onclick="idCheck();">
+	                      		</c:if>
+	                      		<c:if test="${id != null}">
+	                      			<input class="btn bueno-btn mt-30" type="button" value="글쓰기" onclick="location.href='write.jsp';">
+	                      		</c:if>
+	                        </div>
+	                    </div>
+	                </div>
 
-                <!-- Sidebar Area -->
-                <jsp:include page="../include/post_sidebar.jsp" />
-                
-            </div>
+	                <!-- Sidebar Area -->
+	                <jsp:include page="../include/post_sidebar.jsp" />
+	                
+	            </div>
+ 				<%
+        	} else {
+        		%>
+	        	<div class="row justify-content-center">
+                <!-- Post Area -->
+	                <div class="col-12 col-lg-8 col-xl-9">
+	                	<div class="media-body">
+                      		<h4 class="media-heading" id="media-heading">게시판에 글이 없습니다</h4>
+						</div>
+	                    <!-- Search Area -->
+	                    <div class="pagination-area mt-70">
+	                        <nav aria-label="Page navigation example">
+	                            <ul class="pagination">
+	                                <li class="page-item"><a class="page-link" href="#">01</a></li>
+	                                <li class="page-item active"><a class="page-link" href="#">02</a></li>
+	                                <li class="page-item"><a class="page-link" href="#">03</a></li>
+	                            </ul>
+	                        </nav>
+	                        <div class="listwirte">
+	                      		<c:if test="${id == null}">
+	                      			<input class="btn bueno-btn mt-30" type="button" value="글쓰기" onclick="idCheck();">
+	                      		</c:if>
+	                      		<c:if test="${id != null}">
+	                      			<input class="btn bueno-btn mt-30" type="button" value="글쓰기" onclick="location.href='write.jsp';">
+	                      		</c:if>
+	                        </div>
+	                    </div>
+	                </div>
 
-            <div class="row">
-                <div class="col-12">
-                    <div class="pagination-area mt-70">
-                        <nav aria-label="Page navigation example">
-                            <ul class="pagination">
-                                <li class="page-item"><a class="page-link" href="#">01</a></li>
-                                <li class="page-item active"><a class="page-link" href="#">02</a></li>
-                                <li class="page-item"><a class="page-link" href="#">03</a></li>
-                            </ul>
-                        </nav>
-                        <div class="listwirte">
-                      		<c:if test="${id == null}">
-                      			<input class="btn bueno-btn mt-30" type="button" value="글쓰기" onclick="idCheck();">
-                      		</c:if>
-                      		<c:if test="${id != null}">
-                      			<input class="btn bueno-btn mt-30" type="button" value="글쓰기" onclick="location.href='write.jsp';">
-                      		</c:if>
-                      		
-                        </div>
-                    </div>
-                </div>
-            </div>
+	                <!-- Sidebar Area -->
+	                <jsp:include page="../include/post_sidebar.jsp" />
+	                
+	            </div>
+        		<%
+        	}
+        	
+        	%>
+        	
+            
         </div>
     </div>
     <!-- ##### Catagory Post Area End ##### -->

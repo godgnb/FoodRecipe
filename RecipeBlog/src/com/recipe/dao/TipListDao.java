@@ -15,6 +15,7 @@ public class TipListDao {
 	public TipListDao() {
 	}
 	
+	
 	// insert할 레코드의 번호 생성 메소드
 	public int NextTipNum() {
 		int count = 0;
@@ -53,7 +54,7 @@ public class TipListDao {
 		
 		try {
 			con = DBManager.getConnection();
-			sql = "INSERT INTO tiplist (num, id, passwd, subject, content, readcount, commcount, ip, regDate, reRef, reLev, reSeq)";
+			sql = "INSERT INTO tiplist (num, id, passwd, subject, content, readcount, commcount, ip, reg_date, re_ref, re_lev, re_seq)";
 			sql += " VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, tiplistVO.getNum());
@@ -105,5 +106,47 @@ public class TipListDao {
 		}
 		return count;
 	} // getListCount method
+	
+	
+	// 게시글 한개를 가져오는 메소드
+	public TipListVO getListTip(int num) {
+		TipListVO tipListVO = null;
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "";
+		
+		
+		try {
+			con = DBManager.getConnection();
+			sql = "SELECT * FROM tiplist WHERE num = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				tipListVO = new TipListVO();
+				tipListVO.setNum(rs.getInt("num"));
+				tipListVO.setId(rs.getString("id"));
+				tipListVO.setPasswd(rs.getString("passwd"));
+				tipListVO.setSubject(rs.getString("subject"));
+				tipListVO.setContent(rs.getString("content"));
+				tipListVO.setReadcount(rs.getInt("readcount"));
+				tipListVO.setCommcount(rs.getInt("commcount"));
+				tipListVO.setIp(rs.getString("ip"));
+				tipListVO.setRegDate(rs.getTimestamp("reg_date"));
+				tipListVO.setReRef(rs.getInt("re_ref"));
+				tipListVO.setReLev(rs.getInt("re_lev"));
+				tipListVO.setReSeq(rs.getInt("re_seq"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(con, pstmt, rs);
+		}
+		return tipListVO;
+	} // getListTip
 	
 } // TipListDao

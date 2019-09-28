@@ -25,6 +25,7 @@
 	 	 }
 	 	 .contact-form-area .form-control{
 	 	 	width: 320px;
+	 	 	color: black;
 	 	 }
 	</style>
 </head>
@@ -74,7 +75,7 @@
                                 <div class="row">
                                     <div class="col-6">
                                         <input type="text" class="form-control" id="id" name="id" placeholder="Id">
-                                        <input type="text" class="form-control" id="passwd" name="passwd" placeholder="Passward">
+                                        <input type="password" class="form-control" id="passwd" name="passwd" placeholder="Passward">
                                         <span id="com_login"></span>
                                         <button class="btn bueno-btn mt-30" type="button" id="loginbtn">Login</button>
                                         <button class="btn bueno-btn mt-30" type="button" onclick="location='register.jsp'">Register</button>

@@ -1,6 +1,8 @@
 package com.recipe.dao;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.recipe.vo.TipBoardVO;
 
@@ -77,6 +79,60 @@ public class TipBoardDao {
 			DBManager.close(con, pstmt);
 		}
 	} // insertboardTip method
+	
+	
+	// 시작행번호부터 갯수만큼 가져오기(페이징)
+	public List<TipBoardVO> getBoards(int startRow, int pageSize) {
+		List<TipBoardVO> list = new ArrayList<TipBoardVO>();
+		int endRow = startRow + pageSize - 1;
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		StringBuilder sb = new StringBuilder();
+		sb.append("SELECT aa.* ");
+		sb.append("FROM ");
+		sb.append("		(SELECT ROWNUM as rnum, a.* ");
+		sb.append("      FROM ");
+		sb.append(" 		   (SELECT * ");
+		sb.append("            FROM tipboard ");
+		sb.append("            ORDER BY num DESC) a ");
+		sb.append("      WHERE ROWNUM <= ?) aa ");
+		sb.append("WHERE rnum >= ? ");
+		
+		try {
+			con = DBManager.getConnection();
+			pstmt = con.prepareStatement(sb.toString());
+			pstmt.setInt(1, endRow);
+			pstmt.setInt(2, startRow);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				TipBoardVO tipboardVO = new TipBoardVO();
+				tipboardVO.setNum(rs.getInt("num"));
+				tipboardVO.setId(rs.getString("id"));
+				tipboardVO.setPasswd(rs.getString("passwd"));
+				tipboardVO.setSubject(rs.getString("subject"));
+				tipboardVO.setContent(rs.getString("content"));
+				tipboardVO.setReadcount(rs.getInt("readcount"));
+				tipboardVO.setCommcount(rs.getInt("commcount"));
+				tipboardVO.setIp(rs.getString("ip"));
+				tipboardVO.setRegDate(rs.getTimestamp("reg_date"));
+				tipboardVO.setReRef(rs.getInt("re_ref"));
+				tipboardVO.setReLev(rs.getInt("re_lev"));
+				tipboardVO.setReSeq(rs.getInt("re_seq"));
+				//리스트에 vo객체 한개 추가
+				list.add(tipboardVO);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(con, pstmt, rs);
+		}
+		return list;
+	} // getBoards method
 	
 	
 	// 게시판(board) 테이블 레코드 개수 가져오기 메소드

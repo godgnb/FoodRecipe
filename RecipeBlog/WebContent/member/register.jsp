@@ -24,7 +24,7 @@
 	 	 	border-bottom: 1px solid #eaeaea;
 	 	 }
 	 	 .contact-form-area .form-control{
-
+			color: black;
 	 	 }
 	 	 .col-8 {
 	 	 	margin-left: 100px;

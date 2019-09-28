@@ -159,7 +159,7 @@
 	                            <div class="listwirte">
 		                   			<input class="btn bueno-btn mt-30 mr-15" type="submit" value="글쓰기" >
 		                   			<input class="btn bueno-btn mt-30 mr-15" type="reset" value="다시쓰기" >
-		                   			<input class="btn bueno-btn mt-30 mr-15" type="button" value="목록보기" onclick="location.href='tip_list.jsp';">
+		                   			<input class="btn bueno-btn mt-30 mr-15" type="button" value="목록보기" onclick="location.href='tip_board.jsp';">
 		                        </div>
 	                        </div>
 	                    </form>    

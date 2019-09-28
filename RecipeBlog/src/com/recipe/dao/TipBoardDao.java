@@ -81,8 +81,8 @@ public class TipBoardDao {
 	} // insertboardTip method
 	
 	
-	// 시작행번호부터 갯수만큼 가져오기(페이징)
-	public List<TipBoardVO> getBoards(int startRow, int pageSize) {
+	// 검색어로 검색된 행의 시작행번호부터 갯수만큼 가져오기(페이징)
+	public List<TipBoardVO> getBoards(int startRow, int pageSize, String search) {
 		List<TipBoardVO> list = new ArrayList<TipBoardVO>();
 		int endRow = startRow + pageSize - 1;
 		
@@ -97,6 +97,11 @@ public class TipBoardDao {
 		sb.append("      FROM ");
 		sb.append(" 		   (SELECT * ");
 		sb.append("            FROM tipboard ");
+		
+		if (!(search == null || search.equals(""))) { // 검색어 있을때
+			sb.append("			   WHERE subject LIKE ? ");
+		}
+		
 		sb.append("            ORDER BY num DESC) a ");
 		sb.append("      WHERE ROWNUM <= ?) aa ");
 		sb.append("WHERE rnum >= ? ");
@@ -104,8 +109,15 @@ public class TipBoardDao {
 		try {
 			con = DBManager.getConnection();
 			pstmt = con.prepareStatement(sb.toString());
-			pstmt.setInt(1, endRow);
-			pstmt.setInt(2, startRow);
+			
+			if (!(search == null || search.equals(""))) { // 검색어 있을 때
+				pstmt.setString(1, "%" + search + "%");
+				pstmt.setInt(2, endRow);
+				pstmt.setInt(3, startRow);
+			} else { // 검색어 없을 때
+				pstmt.setInt(1, endRow);
+				pstmt.setInt(2, startRow);
+			}
 			
 			rs = pstmt.executeQuery();
 			
@@ -135,21 +147,28 @@ public class TipBoardDao {
 	} // getBoards method
 	
 	
-	// 게시판(board) 테이블 레코드 개수 가져오기 메소드
-	public int getboardCount() {
+	// 검색어로 게시판(board) 테이블 레코드 개수 가져오기 메소드
+	public int getboardCount(String search) {
 		int count = 0;
 		
 		Connection con = null;
-		Statement stmt = null;
+		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = "";
 		
 		try {
 			con = DBManager.getConnection();
-			sql = "SELECT count(*) FROM tipboard";
-			stmt = con.createStatement();
+			sql = "SELECT count(*) FROM tipboard ";
 			
-			rs = stmt.executeQuery(sql);
+			if (!(search == null || search.equals(""))) {
+				sql += "WHERE subject LIKE ? ";
+			}
+			pstmt = con.prepareStatement(sql);
+			
+			if (!(search == null || search.equals(""))) {
+				pstmt.setString(1, "%" + search + "%");
+			}
+			rs = pstmt.executeQuery();
 			
 			rs.next();
 			
@@ -158,7 +177,7 @@ public class TipBoardDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			DBManager.close(con, stmt, rs);
+			DBManager.close(con, pstmt, rs);
 		}
 		return count;
 	} // getboardCount method

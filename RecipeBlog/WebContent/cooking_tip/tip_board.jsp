@@ -80,6 +80,9 @@
 <%
 //파라미터값 search pageNum 가져오기
 String search = request.getParameter("search");
+if (search == null) {
+	search ="";
+}
 String strPageNum = request.getParameter("pageNum");
 if (strPageNum == null) {
 	strPageNum = "1";
@@ -97,10 +100,10 @@ int pageSize = 3;
 int startRow = (pageNum - 1) * pageSize + 1;
 
 // tipboard테이블 전체글개수 가져오기 메소드
-int count = tipBoardDao.getboardCount();
+int count = tipBoardDao.getboardCount(search);
 
 // 글목록 가져오기 메소드 호출
-List<TipBoardVO> tipboardlist = tipBoardDao.getBoards(startRow, pageSize);
+List<TipBoardVO> tipboardlist = tipBoardDao.getBoards(startRow, pageSize, search);
 
 // 날짜 포맷 준비
 SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd HH:mm");
@@ -205,11 +208,9 @@ SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd HH:mm");
         		}
         	} else {
         		%>
-	        	<div class="row justify-content-center">
-                <!-- Post Area -->
-	                <div class="col-12 col-lg-8 col-xl-9">
+        			<div class="media">
 	                	<div class="media-body">
-                      		<h4 class="media-heading" id="media-heading">게시판에 글이 없습니다</h4>
+                      		<h4 class="media-heading" id="media-heading"></h4>
 						</div>
 					</div>
         		<%
@@ -241,7 +242,7 @@ SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd HH:mm");
                             	if (startPage > pageBlock) {
                             		%>
                             		<li class="page-item">
-                            			<a href="tip_list.jsp?pageNum<%=startPage-pageBlock %>" class="page-link-move">[이전]</a>
+                            			<a href="tip_board.jsp?pageNum<%=startPage-pageBlock %>" class="page-link-move">[이전]</a>
                            			</li>
                             		<%
                             	}
@@ -252,13 +253,13 @@ SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd HH:mm");
                            			if (i == pageNum) {
                            				%>
                            				<li class="page-item active">
-                           					<a href="tip_list.jsp?pageNum=<%=i %>" class="page-link"><%=i %></a>
+                           					<a href="tip_board.jsp?pageNum=<%=i %>" class="page-link"><%=i %></a>
                            				</li>
                            				<%
                            			} else {
                            				%>
                                    		<li class="page-item">
-                                   			<a href="tip_list.jsp?pageNum=<%=i %>" class="page-link"><%=i %></a>
+                                   			<a href="tip_board.jsp?pageNum=<%=i %>" class="page-link"><%=i %></a>
                                			</li>
                                			<%
                            			}
@@ -268,7 +269,7 @@ SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd HH:mm");
                             	if (endPage < pageCount) {
                             		%>
                             		<li class="page-item">
-                           				<a href="tip_list.jsp?pageNum=<%=startPage+pageBlock %>" class="page-link-move">[다음]</a>
+                           				<a href="tip_board.jsp?pageNum=<%=startPage+pageBlock %>" class="page-link-move">[다음]</a>
                        				</li>
                             		<%
                             	}
@@ -276,7 +277,7 @@ SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd HH:mm");
                             %>
                             </ul>
                         </nav>
-                        <form action="#" method="post">
+                        <form action="tip_board.jsp" method="get">
                         <div class="listwirte">
                       		<c:if test="${id == null}">
                       			<input class="btn bueno-btn mt-30" type="button" value="글쓰기" onclick="idCheck();">
@@ -285,7 +286,7 @@ SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd HH:mm");
                       			<input class="btn bueno-btn mt-30" type="button" value="글쓰기" onclick="location.href='write.jsp';">
                       		</c:if>
                       		
-							<input type="search" name="search" class="search mt-30" placeholder="Search">
+							<input type="text" name="search" class="search mt-30" value="<%=search %>" placeholder="Search">
 							<button type="submit" class="btn mt-30">
 								<i class="fa fa-search"></i>
 							</button>
@@ -293,14 +294,13 @@ SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd HH:mm");
                         </form>
                     </div>
                 </div>
-
-                <!-- Sidebar Area -->
+                
+                 <!-- Sidebar Area -->
                 <jsp:include page="../include/post_sidebar.jsp" />
                 
-            </div>
-            </div>
-        </div>
-    </div>
+			</div>
+		</div>          
+	</div>
     <!-- ##### Catagory Post Area End ##### -->
 
 

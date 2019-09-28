@@ -33,6 +33,6 @@ tipboardVO.setCommcount(0);
 <%-- 게시글 한개 등록하는 메소드 호출 insertboardTip(tipboardVO) --%>
 <% tipListDao.insertboardTip(tipboardVO); %>
 
-<%-- 이동 tip_list.jsp --%>
-<% response.sendRedirect("tip_list.jsp"); %>
+<%-- 이동 tip_board.jsp --%>
+<% response.sendRedirect("tip_board.jsp"); %>
 

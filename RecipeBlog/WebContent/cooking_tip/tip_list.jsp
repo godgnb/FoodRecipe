@@ -1,3 +1,4 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.List"%>
 <%@page import="com.recipe.vo.TipBoardVO"%>
 <%@page import="com.recipe.dao.TipBoardDao"%>
@@ -60,6 +61,19 @@
     margin-right: 5px;
     border: none;
 }
+.search{
+	width: 300px;
+    height: 50px;
+    background-color: transparent;
+    border: none;
+    color: black;
+    border-bottom: 2px solid #817773;
+    font-size: 16px;
+    font-style: italic;
+    vertical-align: middle;
+    margin-left: 100px;
+	
+}
 
 </style>
 </head>
@@ -88,6 +102,8 @@ int count = tipBoardDao.getboardCount();
 // 글목록 가져오기 메소드 호출
 List<TipBoardVO> tipboardlist = tipBoardDao.getBoards(startRow, pageSize);
 
+// 날짜 포맷 준비
+SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd HH:mm");
 %>
 <body>
     <!-- Preloader -->
@@ -182,7 +198,7 @@ List<TipBoardVO> tipboardlist = tipBoardDao.getBoards(startRow, pageSize);
 						</div>
 	                  	<div class="media-body">
 	                  		<h4 class="media-heading" id="media-heading"><a href="content.jsp?num=<%=tipBoardVO.getNum() %>&pageNum=<%=pageNum %>"><%=tipBoardVO.getSubject() %></a></h4>
-			                <p class="info_writer"><%=tipBoardVO.getId() %><span>|</span><%=tipBoardVO.getRegDate() %><span>|</span><span class="cate_view"><%=tipBoardVO.getReadcount() %></span><span>|</span><span class="cate_comment"><%=tipBoardVO.getCommcount() %></span></p>
+			                <p class="info_writer"><%=tipBoardVO.getId() %><span>|</span><%=sdf.format(tipBoardVO.getRegDate()) %><span>|</span><span class="cate_view"><%=tipBoardVO.getReadcount() %></span><span>|</span><span class="cate_comment"><%=tipBoardVO.getCommcount() %></span></p>
 						</div>
 					</div>
 					<%
@@ -260,6 +276,7 @@ List<TipBoardVO> tipboardlist = tipBoardDao.getBoards(startRow, pageSize);
                             %>
                             </ul>
                         </nav>
+                        <form action="#" method="post">
                         <div class="listwirte">
                       		<c:if test="${id == null}">
                       			<input class="btn bueno-btn mt-30" type="button" value="글쓰기" onclick="idCheck();">
@@ -267,7 +284,13 @@ List<TipBoardVO> tipboardlist = tipBoardDao.getBoards(startRow, pageSize);
                       		<c:if test="${id != null}">
                       			<input class="btn bueno-btn mt-30" type="button" value="글쓰기" onclick="location.href='write.jsp';">
                       		</c:if>
+                      		
+							<input type="search" name="search" class="search mt-30" placeholder="Search">
+							<button type="submit" class="btn mt-30">
+								<i class="fa fa-search"></i>
+							</button>
                         </div>
+                        </form>
                     </div>
                 </div>
 

@@ -148,7 +148,7 @@ public class TipBoardDao {
 	
 	
 	// 검색어로 게시판(board) 테이블 레코드 개수 가져오기 메소드
-	public int getboardCount(String search) {
+	public int getBoardCount(String search) {
 		int count = 0;
 		
 		Connection con = null;
@@ -180,7 +180,31 @@ public class TipBoardDao {
 			DBManager.close(con, pstmt, rs);
 		}
 		return count;
-	} // getboardCount method
+	} // getBoardCount method
+	
+	
+	// 특정 레코드의 조회수를 1증가시키는 메소드
+	public void updateReadCount(int num) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		String sql = "";
+		
+		try {
+			con = DBManager.getConnection();
+			sql = "UPDATE tipboard ";
+			sql += "SET readcount = readcount + 1 ";
+			sql += "WHERE num = ? ";
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(con, pstmt);
+		}
+	} // updateReadCount method
 	
 	
 	// 게시글 한개를 가져오는 메소드

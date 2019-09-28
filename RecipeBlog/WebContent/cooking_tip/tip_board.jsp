@@ -100,7 +100,7 @@ int pageSize = 3;
 int startRow = (pageNum - 1) * pageSize + 1;
 
 // tipboard테이블 전체글개수 가져오기 메소드
-int count = tipBoardDao.getboardCount(search);
+int count = tipBoardDao.getBoardCount(search);
 
 // 글목록 가져오기 메소드 호출
 List<TipBoardVO> tipboardlist = tipBoardDao.getBoards(startRow, pageSize, search);

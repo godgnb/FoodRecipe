@@ -20,7 +20,7 @@
 
     <!-- Stylesheet -->
     <link rel="stylesheet" href="../css/style.css">
-</head>
+    
 <style>
 .list-form {
 	position: relative;
@@ -56,7 +56,9 @@
 	color: black;
 	resize: none;
 }
-</style>
+</style>    
+</head>
+
 <body>
     <!-- Preloader -->
     	<jsp:include page="../include/preloader.jsp" />
@@ -139,22 +141,22 @@
                     <!-- Single Blog Post -->
                     <div class="single-blog-post style-1 d-flex flex-wrap mb-30">
                         <!-- Blog Thumbnail -->
-                        <form action="writeProcess.jsp" method="post" id="frm" name="frm" class="frm">
+                        <form action="writeProcess.jsp" method="post" id="frm" name="frm" class="frm" onsubmit="return check();">
                         	<div class="row">
 	                            <div class="col-12 col-lg-6">
 	                                <input type="text" class="list-form" name="id" value="${id}" readonly>
 	                            </div>
 	                            <div class="col-12 col-lg-6">
-	                                <input type="password" class="list-form" name="passwd" placeholder="Passward*">
+	                                <input type="password" class="list-form" name="passwd" id="passwd" placeholder="Passward*">
 	                            </div>
 	                            <div class="col-12">
-	                                <input type="text" class="list-form" name="subject" placeholder="Subject*">
+	                                <input type="text" class="list-form" name="subject" id="subject" placeholder="Subject*">
 	                            </div>
 	                            <div class="col-12">
 	                                <input type="file" class="list-form" name="imgfile" placeholder="">
 	                            </div>
 	                            <div class="col-12">
-	                                <textarea class="list-form-textarea" name="content" rows="17" placeholder="Content*"></textarea>
+	                                <textarea class="list-form-textarea" name="content" id="content" rows="17" placeholder="Content*"></textarea>
 	                            </div>
 	                            <div class="listwirte">
 		                   			<input class="btn bueno-btn mt-30 mr-15" type="submit" value="글쓰기" >
@@ -182,7 +184,26 @@
 
     <!-- ##### All Javascript Script ##### -->
 		<jsp:include page="../include/common_script.jsp" />
-			
+
+<script>
+function check() {
+	if ($('#passwd').val().length == 0) {
+		alert('게시글 패스워드를 입력해주세요');
+		$('#passwd').focus();
+		return false;
+	}
+	if ($('#subject').val().length == 0) {
+		alert('게시글 제목을 입력해주세요');
+		$('#subject').focus();
+		return false;
+	}
+	if ($('#content').val().length == 0) {
+		alert('게시글 내용을 입력해주세요');
+		$('#content').focus();
+		return false;
+	}
+}
+</script>	
 </body>
 
 </html>

@@ -4,8 +4,8 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.smartcardio.ATR;
 
+import com.recipe.vo.TipBoardCommentVO;
 import com.recipe.vo.TipBoardVO;
 
 public class TipBoardDao {
@@ -290,7 +290,7 @@ public class TipBoardDao {
 	
 	
 	// 게시글 수정하기 메소드
-	public void UpdateBoard(TipBoardVO tipBoardVO) {
+	public void updateBoard(TipBoardVO tipBoardVO) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		String sql = "";
@@ -336,5 +336,62 @@ public class TipBoardDao {
 	} // deleteBoard method
 	
 	
+//	// 게시글에 댓글 한개 등록하는 메소드
+//	public void insertComment (TipBoardCommentVO tipboardcommentVO) {
+//		Connection con = null;
+//		PreparedStatement pstmt = null;
+//		StringBuilder sb = new StringBuilder();
+//		
+//		try {
+//			con = DBManager.getConnection();
+//			sb.append("INSERT INTO tipboardcomment (re_num, name, content, re_date, num) ");
+//			sb.append(" VALUES (?, ?, ?, ?, ?)");
+//			pstmt = con.prepareStatement(sb.toString());
+//			pstmt.setInt(1, tipboardcommentVO.getReNum());
+//			pstmt.setString(2, tipboardcommentVO.getName());
+//			pstmt.setString(3, tipboardcommentVO.getContent());
+//			pstmt.setTimestamp(4, tipboardcommentVO.getReDate());
+//			pstmt.setInt(5, tipboardcommentVO.getNum());
+//			
+//			pstmt.executeUpdate();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		} finally {
+//			DBManager.close(con, pstmt);
+//		}
+//		
+//	} // insertComment method
+//	
+//	
+//	// insert할 게시물의 댓글번호 생성 메소드
+//	public int nextCommentNum(int num) {
+//		int result = 0;
+//		Connection con = null;
+//		PreparedStatement pstmt = null;
+//		ResultSet rs = null;
+//		String sql = "";
+//		
+//		try {
+//			con = DBManager.getConnection();
+//			// num 컬럼값중에 최대값 구하기. 레코드 없으면 null
+//			sql = "SELECT MAX(re_num) FROM tipboardcomment ";
+//			sql += "WHERE num = ? ";
+//			pstmt = con.prepareStatement(sql);
+//			pstmt.setInt(1, num);
+//			
+//			rs = pstmt.executeQuery();
+//			
+//			if (rs.next()) {
+//				result = rs.getInt(1) + 1;
+//			} else {
+//				result = 1;
+//			}
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		} finally {
+//			DBManager.close(con, pstmt, rs);
+//		}
+//		return result;
+//	} // nextBoardNum method
 	
 } // TipboardDao

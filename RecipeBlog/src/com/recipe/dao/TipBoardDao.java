@@ -4,6 +4,8 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.smartcardio.ATR;
+
 import com.recipe.vo.TipBoardVO;
 
 public class TipBoardDao {
@@ -249,7 +251,7 @@ public class TipBoardDao {
 	} // getboardTip method
 	
 	
-	// 게시글 패스워드 비교
+	// 게시글 패스워드 비교 메소드
 	public boolean isPasswdEqual(int num, String passwd) {
 		boolean isPasswdEqual = false;
 		
@@ -287,7 +289,7 @@ public class TipBoardDao {
 	} // isPasswdEqual method
 	
 	
-	// 게시글 수정하기
+	// 게시글 수정하기 메소드
 	public void UpdateBoard(TipBoardVO tipBoardVO) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -310,7 +312,29 @@ public class TipBoardDao {
 		} finally {
 			DBManager.close(con, pstmt);
 		}
-		
 	} // UpdateBoard method
+	
+	
+	// 게시글 삭제하기 메소드
+	public void deleteBoard (int num) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		String sql = "";
+		
+		try {
+			con = DBManager.getConnection();
+			sql = "DELETE FROM tipboard WHERE num = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			
+			pstmt.executeQuery();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(con, pstmt);
+		}
+	} // deleteBoard method
+	
+	
 	
 } // TipboardDao

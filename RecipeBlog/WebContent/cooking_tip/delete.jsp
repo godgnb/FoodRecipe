@@ -67,14 +67,14 @@ String pageNum = request.getParameter("pageNum");
 
 // DAO 객체 준비
 TipBoardDao tipBoardDao = TipBoardDao.getInstance();
-// 수정할 글 글번호로 가져오기
+// 삭제할 글 글번호로 가져오기
 TipBoardVO tipBoardVO = tipBoardDao.getboardTip(num);
 
 // 세션값  id 가져오기
 String id = (String) session.getAttribute("id");
 %>
 
-<%-- 수정권한 확인 
+<%-- 삭제권한 확인 
      로그인한 사용자 중, 아이디가 일치하는 경우 --%>
 <%!
 boolean hasNotAuth(String id, TipBoardVO tipBoardVO) {
@@ -87,7 +87,7 @@ boolean hasNotAuth(String id, TipBoardVO tipBoardVO) {
 if (hasNotAuth(id, tipBoardVO)) {
 	%>
 	<script>
-		alert('수정 권한이 없습니다.');
+		alert('삭제 권한이 없습니다.');
 		history.back();
 	</script>
 	<%
@@ -176,28 +176,16 @@ if (hasNotAuth(id, tipBoardVO)) {
                     <!-- Single Blog Post -->
                     <div class="single-blog-post style-1 d-flex flex-wrap mb-30">
                         <!-- Blog Thumbnail -->
-                        <form action="updateProcess.jsp" method="post" id="frm" name="frm" class="frm" onsubmit="return passwdCheck();">
-                        <%-- 수정할 글번호는 눈에 안보이는 hidden 타입으로 입력 --%>
+                        <form action="deleteProcess.jsp" method="post" id="frm" name="frm" class="frm" onsubmit="return passwdCheck();">
+                        <%-- 삭제할 글번호는 눈에 안보이는 hidden 타입으로 입력 --%>
                         <input type="hidden" name="pageNum" value="<%=pageNum %>">
                         <input type="hidden" name="num" value="<%=num %>">
                         	<div class="row">
 	                            <div class="col-12 col-lg-6">
-	                                <input type="text" class="list-form" name="id" value="${id}" readonly>
-	                            </div>
-	                            <div class="col-12 col-lg-6">
 	                                <input type="password" class="list-form" name="passwd" id="passwd" placeholder="Passward*">
 	                            </div>
-	                            <div class="col-12">
-	                                <input type="text" class="list-form" name="subject" value="<%=tipBoardVO.getSubject() %>">
-	                            </div>
-	                            <div class="col-12">
-	                                <input type="file" class="list-form" name="imgfile" >
-	                            </div>
-	                            <div class="col-12">
-	                                <textarea class="list-form-textarea" name="content" rows="17"><%=tipBoardVO.getContent() %></textarea>
-	                            </div>
 	                            <div class="listwirte">
-		                   			<input class="btn bueno-btn mt-30 mr-15" type="submit" value="수정하기" >
+		                   			<input class="btn bueno-btn mt-30 mr-15" type="submit" value="삭제하기" >
 		                   			<input class="btn bueno-btn mt-30 mr-15" type="reset" value="다시쓰기" >
 		                   			<input class="btn bueno-btn mt-30 mr-15" type="button" value="목록보기" onclick="location.href='tip_board.jsp?pageNum=<%=pageNum %>';">
 		                        </div>
@@ -225,11 +213,11 @@ if (hasNotAuth(id, tipBoardVO)) {
 
 <script>
 function passwdCheck() {
-	// 글 수정 비밀번호 확인
+	// 글 삭제 비밀번호 확인
 	var passwdCheck = $('#passwd').val();
 	
 	if (passwdCheck.length == 0) {
-		alert('패스워드를 확인해주세요');
+		alert('패스워드를 입력해주세요');
 		$('#passwd').focus();
 		return false;
 	} 

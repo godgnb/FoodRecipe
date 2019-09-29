@@ -206,8 +206,8 @@ SimpleDateFormat sdf = new SimpleDateFormat("MMMMM dd, yyyy");
                                     </div>
                                     <div class="col-12">
                                         <input class="btn bueno-btn mt-30" type="button" value="글수정" onclick="location.href='update.jsp?num=<%=tipBoardVO.getNum() %>&pageNum=<%=pageNum %>';">
-                                        <input class="btn bueno-btn mt-30" type="button" value="글삭제">
-                                        <input class="btn bueno-btn mt-30" type="button" value="목록보기">
+                                        <input class="btn bueno-btn mt-30" type="button" value="글삭제" onclick="checkDelete();">
+                                        <input class="btn bueno-btn mt-30" type="button" value="목록보기" onclick="location.href='tip_board.jsp?pageNum=<%=pageNum %>';">
                                         <button class="btn bueno-btn mt-30" type="submit">답글쓰기</button>
                                     </div>
                                 </div>
@@ -232,6 +232,15 @@ SimpleDateFormat sdf = new SimpleDateFormat("MMMMM dd, yyyy");
 
     <!-- ##### All Javascript Script ##### -->
 		<jsp:include page="../include/common_script.jsp" />
+
+<script>
+function checkDelete() {
+	var result = confirm('글을 정말 삭제하시겠습니까?');
+	if (result == true) {
+		location.href = 'delete.jsp?num=<%=tipBoardVO.getNum() %>&pageNum=<%=pageNum %>';
+	}
+}
+</script>
 
 </body>
 

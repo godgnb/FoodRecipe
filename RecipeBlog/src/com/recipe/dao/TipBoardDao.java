@@ -246,6 +246,71 @@ public class TipBoardDao {
 			DBManager.close(con, pstmt, rs);
 		}
 		return tipboardVO;
-	} // getboardTip
+	} // getboardTip method
+	
+	
+	// 게시글 패스워드 비교
+	public boolean isPasswdEqual(int num, String passwd) {
+		boolean isPasswdEqual = false;
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "";
+		
+		try {
+			con = DBManager.getConnection();
+			sql = "SELECT count(*) ";
+			sql += "FROM tipboard ";
+			sql += "WHERE num = ? AND passwd = ? ";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			pstmt.setString(2, passwd);
+			
+			rs = pstmt.executeQuery();
+			
+			rs.next();
+			rs.getInt(1);
+			
+			if (rs.getInt(1) == 1) {
+				isPasswdEqual = true; // 게시글 패스워드 같음
+			} else {
+				isPasswdEqual = false; // 게시글 패스워드 다름
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(con, pstmt, rs);
+		}
+		return isPasswdEqual;
+	} // isPasswdEqual method
+	
+	
+	// 게시글 수정하기
+	public void UpdateBoard(TipBoardVO tipBoardVO) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		String sql = "";
+		
+		try {
+			con = DBManager.getConnection();
+			sql = "UPDATE tipboard ";
+			sql += "SET subject = ?, content = ? ";
+			sql += "WHERE num = ? ";
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, tipBoardVO.getSubject());
+			pstmt.setString(2, tipBoardVO.getContent());
+			pstmt.setInt(3, tipBoardVO.getNum());
+			
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(con, pstmt);
+		}
+		
+	} // UpdateBoard method
 	
 } // TipboardDao

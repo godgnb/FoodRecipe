@@ -232,6 +232,7 @@ SimpleDateFormat sdf = new SimpleDateFormat("MMMMM dd, yyyy");
 
     <!-- ##### All Javascript Script ##### -->
 		<jsp:include page="../include/common_script.jsp" />
+
 </body>
 
 </html>

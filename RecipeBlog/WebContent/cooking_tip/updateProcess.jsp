@@ -29,7 +29,7 @@ if (!isPasswdEqual) {
 	return;
 }
 // 게시글 수정하기 메소드 호출
-tipBoardDao.UpdateBoard(tipboardVO);
+tipBoardDao.updateBoard(tipboardVO);
 %>
 <script>
 	alert('글을 수정하였습니다');

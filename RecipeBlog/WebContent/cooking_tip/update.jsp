@@ -229,7 +229,7 @@ function passwdCheck() {
 	var passwdCheck = $('#passwd').val();
 	
 	if (passwdCheck.length == 0) {
-		alert('패스워드를 확인해주세요');
+		alert('패스워드를 입력해주세요');
 		$('#passwd').focus();
 		return false;
 	} 

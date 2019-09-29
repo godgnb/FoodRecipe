@@ -29,6 +29,9 @@
     margin: 0;
     display: inline-block;
 }
+textarea.form-control {
+	resize: none;
+}
 </style>
 </head>
 <%
@@ -156,11 +159,14 @@ SimpleDateFormat sdf = new SimpleDateFormat("MMMMM dd, yyyy");
                                     <!-- Comment Meta -->
                                     <div class="comment-meta">
                                         <div class="d-flex">
-                                            <a href="#" class="post-author">Jane Smith</a>
-                                            <a href="#" class="post-date">July 11, 2018</a>
-                                            <a href="#" class="reply">Reply</a>
+                                        	<span class="comment-author" id="comment_name"></span>	
+                                        	<span class="comment-date" id="comment_date"></span>
+<!--                                             <a href="#" class="post-author">Jane Smith</a> -->
+<!--                                             <a href="#" class="post-date">July 11, 2018</a> -->
+<!--                                             <a href="#" class="reply">Reply</a> -->
                                         </div>
-                                        <p>Consectetur adipiscing elit. Praesent vel tortor facilisis, volutpat nulla placerat, tinci dunt mi. Nullam vel orci dui. Su spendisse sit amet laoreet neque. Fusce sagittis sus cipit sem a consequat.</p>
+                                        	<p id="comment_content">
+<!--                                         <p>Consectetur adipiscing elit. Praesent vel tortor facilisis, volutpat nulla placerat, tinci dunt mi. Nullam vel orci dui. Su spendisse sit amet laoreet neque. Fusce sagittis sus cipit sem a consequat.</p> -->
                                     </div>
                                 </div>
 
@@ -189,30 +195,8 @@ SimpleDateFormat sdf = new SimpleDateFormat("MMMMM dd, yyyy");
                         <h4 class="mb-50">Leave a reply</h4>
 
                         <!-- Reply Form -->
-                        <div class="contact-form-area">
-                            <form action="#" method="post">
-                                <div class="row">
-                                    <div class="col-12 col-lg-6">
-                                        <input type="text" class="form-control" id="name" placeholder="Name*">
-                                    </div>
-                                    <div class="col-12 col-lg-6">
-                                        <input type="email" class="form-control" id="email" placeholder="Email*">
-                                    </div>
-                                    <div class="col-12">
-                                        <input type="text" class="form-control" id="subject" placeholder="Website">
-                                    </div>
-                                    <div class="col-12">
-                                        <textarea name="message" class="form-control" id="message" cols="30" rows="10" placeholder="Message"></textarea>
-                                    </div>
-                                    <div class="col-12">
-                                        <input class="btn bueno-btn mt-30" type="button" value="글수정" onclick="location.href='update.jsp?num=<%=tipBoardVO.getNum() %>&pageNum=<%=pageNum %>';">
-                                        <input class="btn bueno-btn mt-30" type="button" value="글삭제" onclick="checkDelete();">
-                                        <input class="btn bueno-btn mt-30" type="button" value="목록보기" onclick="location.href='tip_board.jsp?pageNum=<%=pageNum %>';">
-                                        <button class="btn bueno-btn mt-30" type="submit">답글쓰기</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
+                        <jsp:include page="comment.jsp" />
+                        
                     </div>
                 </div>
 

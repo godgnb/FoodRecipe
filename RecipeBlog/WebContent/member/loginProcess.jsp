@@ -13,6 +13,7 @@ int check = memberDao.userCheck(id, passwd);
 
 if (check == 1) {
 	session.setAttribute("id", id);
+	session.setAttribute("passwd", passwd);
 	
 }
 %>

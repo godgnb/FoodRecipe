@@ -111,8 +111,8 @@
                             	<a href="../member/login.jsp">Login / Register</a>
                             </c:if>
                             <c:if test="${id != null}">
-                            	${id}님
-                            	<a href="../member/logout.jsp"> Logout</a> 
+                            	<a href="../member/myAccount.jsp">${id}님</a><span style="padding: 0 5px 0 5px;">|</span> 
+                            	<a href="../member/logout.jsp"> Logout</a>
                             </c:if>
                             
                         </div>

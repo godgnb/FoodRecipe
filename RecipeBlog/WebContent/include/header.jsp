@@ -48,7 +48,7 @@
 
 	<!-- Logo Area -->
 <div class="logo-area">
-    <a href="../index.jsp"><img src="../img/core-img/logo.png" alt=""></a>
+    <a href="../index.jsp"><img src="../img/core-img/mongmong6.png" alt=""></a>
 </div>
 
 <!-- Navbar Area -->

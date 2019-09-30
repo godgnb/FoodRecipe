@@ -42,9 +42,9 @@
 	
 </head>
 <%
-// 세션값 id 가져오기
+// 세션값 id, passwd 가져오기
 String id = (String) session.getAttribute("id");
-
+String passwd =(String) session.getAttribute("passwd");
 // DAO 객체 준비
 MemberDao memberDao = MemberDao.getInstance();
 
@@ -88,20 +88,20 @@ MemberVO memberVO = memberDao.getMember(id);
                     </div>
 
                     <div class="post-a-comment-area mb-30 clearfix">
-                        <h4 class="form_title">Detail Information</h4>
+                        <h4 class="form_title">Account Delete</h4>
 
                         <!-- Register Form -->
                         <div class="contact-form-area">
-                            <form name="frm"  method="get" id="join">
+                            <form name="frm" action="deleteProcess.jsp" method="get" id="frm" onsubmit="return passwdCheck();">
                                 <div class="row" >
                                     <div class="col-8">
                                         <input type="text" class="form-control" id="id" name="id" value="<%=memberVO.getId() %>" readonly>
+                                        <input type="password" class="form-control" id="passwd" name="passwd" placeholder="Passward*" >
                                         <input type="text" class="form-control" id="name" name="name" value="<%=memberVO.getName() %>" readonly>
                                         <input type="tel" class="form-control" id="phone" name="phone" value="<%=memberVO.getPhone() %>" readonly>
                                         <input type="text" class="form-control" id="email" name="email" value="<%=memberVO.getEmail() %>" readonly>
                                         
-                                        <input class="btn bueno-btn mt-30 mr-15" type="button" value="정보수정" id="edit" onclick="location.href='edit.jsp?id=<%=memberVO.getId() %>';">
-                                        <input class="btn bueno-btn mt-30 mr-15" type="button" value="정보삭제" id="delete" >
+                                        <input class="btn bueno-btn mt-30 mr-15" type="submit" value="삭제하기" id="delete" >
                                         <input class="btn bueno-btn mt-30 mr-15" type="button" value="메인으로" onclick="location='../index.jsp'">
                                     </div>
                                 </div>
@@ -124,13 +124,19 @@ MemberVO memberVO = memberDao.getMember(id);
 		<jsp:include page="../include/common_script.jsp" />
 
 <script>
-$('#delete').on('click', function () {
-	var check = confirm("회원정보를 삭제하시겠습니까?");
-	if (check == true) {
-		location.href='delete.jsp?id=<%=memberVO.getId() %>';
-	}
-});
+function passwdCheck() {
+	// 글 삭제 비밀번호 확인
+	var passwdCheck = $('#passwd').val();
+	
+	if (passwdCheck.length == 0) {
+		alert('패스워드를 입력해주세요');
+		$('#passwd').focus();
+		return false;
+	} 
+	
+}
 </script>
+
 </body>
 
 </html>

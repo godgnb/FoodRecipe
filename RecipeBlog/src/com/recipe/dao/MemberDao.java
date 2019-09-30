@@ -162,7 +162,39 @@ public class MemberDao {
 		
 		try {
 			con = DBManager.getConnection();
-			sql = "UPDATE member SET ";
+			sql = "UPDATE member SET name = ?, phone = ?, email = ? WHERE id = ? ";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, memberVO.getName());
+			pstmt.setString(2, memberVO.getPhone());
+			pstmt.setString(3, memberVO.getEmail());
+			pstmt.setString(4, memberVO.getId());
+			
+			rowCount = pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(con, pstmt);
+		}
+		return rowCount;
+	} // updateMember method
+	
+	
+	// 회원정보 삭제하기 메소드
+	public int deleteMember(String id) {
+		int rowCount = 0;
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		String sql = "";
+		
+		try {
+			con = DBManager.getConnection();
+			sql = "DELETE FROM member WHERE id =?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			
+			rowCount = pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -170,6 +202,6 @@ public class MemberDao {
 		}
 		
 		return rowCount;
-	} // updateMember method
+	} // deleteMember method
 	
 } // MemberDao

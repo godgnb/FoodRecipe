@@ -97,12 +97,12 @@ MemberVO memberVO = memberDao.getMember(id);
                                     <div class="col-8">
                                         <input type="text" class="form-control" id="id" name="id" value="<%=memberVO.getId() %>" readonly>
                                         <input type="password" class="form-control" id="passwd" name="passwd" placeholder="Passward*" >
-                                        <input type="text" class="form-control" id="name" name="name" value="<%=memberVO.getName() %>" readonly>
+                                        <input type="text" class="form-control" id="name" name="name" value="<%=memberVO.getName() %>" >
                                         <input type="tel" class="form-control" id="phone" name="phone" value="<%=memberVO.getPhone() %>" >
                                         <input type="text" class="form-control" id="email" name="email" value="<%=memberVO.getEmail() %>" >
                                         
-                                        <input class="btn bueno-btn mt-30 mr-15" type="submit" value="Edit" id="edit" >
-                                        <input class="btn bueno-btn mt-30 mr-15" type="button" value="go to Main" onclick="location='../index.jsp'">
+                                        <input class="btn bueno-btn mt-30 mr-15" type="submit" value="수정하기" id="edit" >
+                                        <input class="btn bueno-btn mt-30 mr-15" type="button" value="메인으로" onclick="location='../index.jsp'">
                                     </div>
                                 </div>
                             </form>

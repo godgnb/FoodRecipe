@@ -26,7 +26,7 @@ if (check != 1) {
 	return;
 }
 // 회원정보 수정하기 메소드 호출
-//memberDao.updateMember(memberVO);
+memberDao.updateMember(memberVO);
 %>
 <script>
 	alert('회원정보를 수정하였습니다');

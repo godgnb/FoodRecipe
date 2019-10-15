@@ -26,12 +26,14 @@ TipBoardVO tipBoardVO = tipBoardDao.getboardTip(num);
 
 <div class="contact-form-area">
     <form action="#" method="post">
+    <input type="hidden" name="pageNum" id="pageNum" value="<%=pageNum %>"/>
+	<input type="hidden" name="num" id="num" value="<%=num %>"/>
         <div class="row">
             <div class="col-12 col-lg-6">
                 <input type="text" class="form-control" id="name" placeholder="Name*">
             </div>
             <div class="col-12">
-                <textarea name="comment" class="form-control" id="comment" cols="30" rows="10" placeholder="Comment"></textarea>
+                <textarea name="content" class="form-control" id="content" cols="30" rows="10" placeholder="Comment"></textarea>
             </div>
             <div class="col-12">
                 <input class="btn bueno-btn mt-30" type="button" value="글수정" onclick="location.href='update.jsp?num=<%=tipBoardVO.getNum() %>&pageNum=<%=pageNum %>';">
@@ -42,5 +44,26 @@ TipBoardVO tipBoardVO = tipBoardDao.getboardTip(num);
         </div>
     </form>
 </div>
+
+<script>
+$('#rewrite').click(function () {
+	var num = $('#num').val();
+	var pageNum = $('#pageNum').val();
+	var name = $('#name').val();
+	var content = $('#content').val();
+	
+	$.ajax({
+		url: 'commentwrite.jsp',
+		data: {num: num, pageNum: pageNum, name: name, content: content},
+		success: function (data) {
+			
+		}
+	});
+});
+
+
+</script>
+
+
 </body>
 </html>

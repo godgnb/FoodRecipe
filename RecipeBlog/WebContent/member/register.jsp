@@ -97,7 +97,7 @@
                                         <input type="text" class="form-control" id="email" name="email" placeholder="E-mail">
                                         <span id="com_email"></span><br>
                                         
-                                        <input class="btn bueno-btn mt-30" type="button" value="Register" id="register">
+                                        <button class="btn bueno-btn mt-30" type="submit" id="register">Register</button>
                                         <button class="btn bueno-btn mt-30" type="button" onclick="location='login.jsp'">Cancel</button>
                                     </div>
                                 </div>
@@ -131,11 +131,14 @@
 
 			if (data == true) {
 				$('#com_id').text('중복된 아이디입니다.').css('color', 'red');
+				 $("#register").attr("disabled", true);
 			} else {
 				if (id.length < 5 || id.length > 15) {
 				$('#com_id').text('5~15글자의 영문 대소문자, 숫자만 사용가능합니다').css('color', 'red');
+				$("#register").attr("disabled", true);
 				} else {
 					$('#com_id').text('좋은 아이디입니다.').css('color', 'blue');
+					$("#register").attr("disabled", false);
 				}
 				
 			}	

@@ -192,8 +192,7 @@ SimpleDateFormat sdf = new SimpleDateFormat("MMMMM dd, yyyy");
                     </div>
 
                     <div class="post-a-comment-area mb-30 clearfix">
-                        <h4 class="mb-50">Leave a reply</h4>
-
+                        
                         <!-- Reply Form -->
                         <jsp:include page="comment.jsp" />
                         

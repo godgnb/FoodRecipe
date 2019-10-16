@@ -49,6 +49,7 @@ tipBoardDao.updateReadCount(num);
 
 // 글번호에 해당하는 레코드 한개 가져오기
 TipBoardVO tipBoardVO = tipBoardDao.getboardTip(num);
+session.setAttribute("tipBoardVO", tipBoardVO);
 
 // 글작성날짜 형식 "July 11, 2019"
 SimpleDateFormat sdf = new SimpleDateFormat("MMMMM dd, yyyy");

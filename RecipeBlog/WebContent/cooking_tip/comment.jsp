@@ -24,10 +24,9 @@ TipBoardVO tipBoardVO = tipBoardDao.getboardTip(num);
 
 %>
 <body>
-<c:forEach items="${tipBoardVO }" var="value">
-<c:if test="${value.id != id}">
+<c:if test="${id ne tipBoardVO.id}">
 <h4 class="mb-50">Leave a reply</h4>
-<div class="contact-form-area">
+<div class="contact-form-area">	
     <form action="#" method="post">
     <input type="hidden" name="pageNum" id="pageNum" value="<%=pageNum %>"/>
 	<input type="hidden" name="num" id="num" value="<%=num %>"/>
@@ -46,14 +45,13 @@ TipBoardVO tipBoardVO = tipBoardDao.getboardTip(num);
     </form>
 </div>
 </c:if>
-<c:if test="${value.id == id}">
+<c:if test="${id eq tipBoardVO.id}">
     <div class="col-12">
     	<input class="btn bueno-btn mt-30" type="button" value="글수정" onclick="location.href='update.jsp?num=<%=tipBoardVO.getNum() %>&pageNum=<%=pageNum %>';">
 		<input class="btn bueno-btn mt-30" type="button" value="글삭제" onclick="checkDelete();">
         <input class="btn bueno-btn mt-30" type="button" value="목록보기" onclick="location.href='tip_board.jsp?pageNum=<%=pageNum %>';">
     </div>
 </c:if>
-</c:forEach>
 <script>
 $('#rewrite').click(function () {
 	var num = $('#num').val();

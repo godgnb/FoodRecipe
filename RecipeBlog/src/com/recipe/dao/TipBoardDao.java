@@ -364,7 +364,7 @@ public class TipBoardDao {
 	
 	
 	// insert할 게시물의 댓글번호 생성 메소드
-	public int nextCommentNum(int num) {
+	public int nextCommentNum() {
 		int result = 0;
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -375,9 +375,7 @@ public class TipBoardDao {
 			con = DBManager.getConnection();
 			// num 컬럼값중에 최대값 구하기. 레코드 없으면 null
 			sql = "SELECT MAX(re_num) FROM tipboardcomment ";
-			sql += "WHERE num = ? ";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, num);
 			
 			rs = pstmt.executeQuery();
 			
@@ -395,6 +393,44 @@ public class TipBoardDao {
 	} // nextBoardNum method
 	
 	
-	// 게시글 답글 출력하는 메소드
+
+	//게시글 답글 출력하는 메소드
+	public List<TipBoardCommentVO> getComment(int num) {
+		List<TipBoardCommentVO> list = new ArrayList<TipBoardCommentVO>();
+	
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		StringBuilder sb = new StringBuilder();
+		
+		sb.append("SELECT * ");
+		sb.append("FROM tipboardcomment ");
+		sb.append("WHERE num = ? ");
+		sb.append("ORDER BY re_num ");
+		
+		try {
+			con = DBManager.getConnection();
+			pstmt = con.prepareStatement(sb.toString());
+			
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				TipBoardCommentVO tipBoardCommentVO = new TipBoardCommentVO();
+				tipBoardCommentVO.setReNum(rs.getInt("reNum"));
+				tipBoardCommentVO.setName(rs.getString("name"));
+				tipBoardCommentVO.setContent(rs.getString("content"));
+				tipBoardCommentVO.setReDate(rs.getTimestamp("reDate"));
+				tipBoardCommentVO.setNum(rs.getInt("num"));
+
+				list.add(tipBoardCommentVO);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(con, pstmt, rs);
+		}
+		return list;
+	} // getComment method
 	
 } // TipboardDao

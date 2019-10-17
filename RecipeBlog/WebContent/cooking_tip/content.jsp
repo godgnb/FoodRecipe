@@ -148,56 +148,7 @@ SimpleDateFormat sdf = new SimpleDateFormat("MMMMM dd, yyyy");
                     </div>
 
                     <!-- Comment Area Start -->
-                    <div class="comment_area clearfix mb-100">
-                        <h4 class="mb-50">Comments</h4>
-
-                        <ol>
-                            <!-- Single Comment Area -->
-                            <li class="single_comment_area">
-                                <!-- Comment Content -->
-                                <div class="comment-content d-flex">
-                                    
-                                    <!-- Comment Meta -->
-                                    <div class="comment-meta">
-                                        <div class="d-flex">
-                                        	<span class="comment-author" id="comment_name"></span>	
-                                        	<span class="comment-date" id="comment_date"></span>
-<!--                                             <a href="#" class="post-author">Jane Smith</a> -->
-<!--                                             <a href="#" class="post-date">July 11, 2018</a> -->
-<!--                                             <a href="#" class="reply">Reply</a> -->
-                                        </div>
-                                        	<p id="comment_content">
-<!--                                         <p>Consectetur adipiscing elit. Praesent vel tortor facilisis, volutpat nulla placerat, tinci dunt mi. Nullam vel orci dui. Su spendisse sit amet laoreet neque. Fusce sagittis sus cipit sem a consequat.</p> -->
-                                    </div>
-                                </div>
-
-                                <ol class="children">
-                                    <li class="single_comment_area">
-                                        <!-- Comment Content -->
-                                        <div class="comment-content d-flex">
-                                            
-                                            <!-- Comment Meta -->
-                                            <div class="comment-meta">
-                                                <div class="d-flex">
-                                                    <a href="#" class="post-author">Christian Williams</a>
-                                                    <a href="#" class="post-date">April 15, 2018</a>
-                                                    <a href="#" class="reply">Reply</a>
-                                                </div>
-                                                <p>Consectetur adipiscing elit. Praesent vel tortor facilisis, Nullam vel orci dui. Su spendisse sit amet laoreet neque.</p>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ol>
-                            </li>
-                        </ol>
-                    </div>
-
-                    <div class="post-a-comment-area mb-30 clearfix">
-                        
-                        <!-- Reply Form -->
-                        <jsp:include page="comment.jsp" />
-                        
-                    </div>
+					<jsp:include page="comment.jsp" />
                 </div>
 
                 <!-- Sidebar Widget -->

@@ -58,8 +58,8 @@ public class TipBoardDao {
 		
 		try {
 			con = DBManager.getConnection();
-			sql = "INSERT INTO tipboard (num, id, passwd, subject, content, readcount, commcount, ip, reg_date, re_ref, re_lev, re_seq)";
-			sql += " VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			sql = "INSERT INTO tipboard (num, id, passwd, subject, content, readcount, commcount, ip, reg_date)";
+			sql += " VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, tipboardVO.getNum());
 			pstmt.setString(2, tipboardVO.getId());
@@ -70,9 +70,6 @@ public class TipBoardDao {
 			pstmt.setInt(7, tipboardVO.getCommcount());
 			pstmt.setString(8, tipboardVO.getIp());
 			pstmt.setTimestamp(9, tipboardVO.getRegDate());
-			pstmt.setInt(10, tipboardVO.getReRef());
-			pstmt.setInt(11, tipboardVO.getReLev());
-			pstmt.setInt(12, tipboardVO.getReSeq());
 			
 			pstmt.executeUpdate();
 		} catch (Exception e) {
@@ -134,9 +131,7 @@ public class TipBoardDao {
 				tipboardVO.setCommcount(rs.getInt("commcount"));
 				tipboardVO.setIp(rs.getString("ip"));
 				tipboardVO.setRegDate(rs.getTimestamp("reg_date"));
-				tipboardVO.setReRef(rs.getInt("re_ref"));
-				tipboardVO.setReLev(rs.getInt("re_lev"));
-				tipboardVO.setReSeq(rs.getInt("re_seq"));
+
 				//리스트에 vo객체 한개 추가
 				list.add(tipboardVO);
 			}
@@ -238,9 +233,6 @@ public class TipBoardDao {
 				tipboardVO.setCommcount(rs.getInt("commcount"));
 				tipboardVO.setIp(rs.getString("ip"));
 				tipboardVO.setRegDate(rs.getTimestamp("reg_date"));
-				tipboardVO.setReRef(rs.getInt("re_ref"));
-				tipboardVO.setReLev(rs.getInt("re_lev"));
-				tipboardVO.setReSeq(rs.getInt("re_seq"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

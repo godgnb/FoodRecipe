@@ -141,7 +141,7 @@
                     <!-- Single Blog Post -->
                     <div class="single-blog-post style-1 d-flex flex-wrap mb-30">
                         <!-- Blog Thumbnail -->
-                        <form action="writeProcess.jsp" method="post" id="frm" name="frm" class="frm" onsubmit="return check();">
+                        <form action="writeProcess.jsp" method="post" enctype="multipart/form-data" id="frm" name="frm" class="frm" onsubmit="return check();">
                         	<div class="row">
 	                            <div class="col-12 col-lg-6">
 	                                <input type="text" class="list-form" name="id" value="${id}" readonly>
@@ -153,7 +153,7 @@
 	                                <input type="text" class="list-form" name="subject" id="subject" placeholder="Subject*">
 	                            </div>
 	                            <div class="col-12">
-	                                <input type="file" class="list-form" name="imgfile" placeholder="">
+	                                <input type="file" class="list-form" name="imgfile">
 	                            </div>
 	                            <div class="col-12">
 	                                <textarea class="list-form-textarea" name="content" id="content" rows="17" placeholder="Content*"></textarea>

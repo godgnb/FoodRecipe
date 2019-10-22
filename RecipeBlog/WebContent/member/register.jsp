@@ -36,6 +36,23 @@
 		 	 font-size: 40px;
 		 	 margin: 0 0 30px 95px;
 	 	 }
+	 	 .form-email{
+		    position: relative;
+		    z-index: 2;
+		    height: 54px;
+		    width: 50%;
+		    background-color: #ffffff;
+		    margin-right: 10px;
+		    font-size: 12px;
+		    border: 1px solid #dadfe5;
+		    border-bottom: 2px solid #dadfe5;
+		    border-radius: 0;
+		    padding: 15px 30px;
+		    font-weight: 500;
+		    color: #aeaeae;
+		    -webkit-transition-duration: 500ms;
+		    transition-duration: 500ms;
+		}
 	</style>
 	
 </head>
@@ -94,9 +111,12 @@
                                         <span id="com_name"></span>
                                         <input type="tel" class="form-control" id="phone" name="phone" placeholder="Phone Number">
                                         <span id="com_phone"></span>
-                                        <input type="text" class="form-control" id="email" name="email" placeholder="E-mail">
+                                        <input type="text" class="form-email" id="email" name="email" placeholder="E-mail">
+                                        <input type="button" class="bueno-btn" value="인증하기" id="emailCheckbtn"><br>
                                         <span id="com_email"></span><br>
                                         
+                                        <input type="text" class="form-email" id="emailCheck" name="emailCheck">
+                                        <span></span><br>
                                         <button class="btn bueno-btn mt-30" type="submit" id="register">Register</button>
                                         <button class="btn bueno-btn mt-30" type="button" onclick="location='login.jsp'">Cancel</button>
                                     </div>

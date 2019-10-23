@@ -337,7 +337,8 @@ public class TipBoardDao {
 	
 	
 	// 게시글에 댓글 한개 등록하는 메소드
-	public void insertComment (TipBoardCommentVO tipboardcommentVO) {
+	public int insertComment (TipBoardCommentVO tipboardcommentVO) {
+		int result = 0;
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		StringBuilder sb = new StringBuilder();
@@ -353,13 +354,15 @@ public class TipBoardDao {
 			pstmt.setTimestamp(4, tipboardcommentVO.getReDate());
 			pstmt.setInt(5, tipboardcommentVO.getNum());
 			
-			pstmt.executeUpdate();
+			result = pstmt.executeUpdate();
+			
+		
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			DBManager.close(con, pstmt);
 		}
-		
+		return result;
 	} // insertComment method
 	
 	
@@ -411,15 +414,16 @@ public class TipBoardDao {
 		try {
 			con = DBManager.getConnection();
 			pstmt = con.prepareStatement(sb.toString());
+			pstmt.setInt(1, num);
 			
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
 				TipBoardCommentVO tipBoardCommentVO = new TipBoardCommentVO();
-				tipBoardCommentVO.setReNum(rs.getInt("reNum"));
+				tipBoardCommentVO.setReNum(rs.getInt("re_num"));
 				tipBoardCommentVO.setName(rs.getString("name"));
 				tipBoardCommentVO.setContent(rs.getString("content"));
-				tipBoardCommentVO.setReDate(rs.getTimestamp("reDate"));
+				tipBoardCommentVO.setReDate(rs.getTimestamp("re_date"));
 				tipBoardCommentVO.setNum(rs.getInt("num"));
 
 				list.add(tipBoardCommentVO);

@@ -35,9 +35,7 @@ tipBoardCommentVO.setReDate(reDate);
 tipBoardCommentVO.setNum(num);
 
 // 댓글 1개 입력 메소드 호출
-tipBoardDao.insertComment(tipBoardCommentVO);
+int a = tipBoardDao.insertComment(tipBoardCommentVO);
 
-// 댓글 전체 가져오기 메소드 호출
-List<TipBoardCommentVO> tipBoardCommentList = tipBoardDao.getComment(num);
 %>
-<%=tipBoardCommentList %>
+<%=a %>

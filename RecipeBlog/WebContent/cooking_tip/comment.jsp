@@ -42,13 +42,11 @@ TipBoardVO tipBoardVO = tipBoardDao.getboardTip(num);
                 <!-- Comment Meta -->
                 <div class="comment-meta">
                     <div class="d-flex">
-                    	<span class="post-author" id="comment_name">Jane Smith</span>	
-                    	<span class="post-date" id="comment_date">July 11, 2018</span>
+                    	<span class="post-author" id="comment_name"></span>	
+                    	<span class="post-date" id="comment_date"></span>
                  	    <span class="reply" id="comment_reply">Reply</span>
                     </div>
-                    	<p id="comment_content">
-	                    	Consectetur adipiscing elit. Praesent vel tortor facilisis, volutpat nulla placerat, tinci dunt mi. Nullam vel orci dui. Su spendisse sit amet laoreet neque. Fusce sagittis sus cipit sem a consequat.
-	                    </p>
+                    	<p id="comment_content"></p>
                 </div>
             </div>
 
@@ -79,7 +77,7 @@ TipBoardVO tipBoardVO = tipBoardDao.getboardTip(num);
 	<!-- Reply Form -->
 	<h4 class="mb-50">Leave a reply</h4>
 	<div class="contact-form-area">	
-	    <form action="commentwrite.jsp" method="post">
+	    <form action="" method="post">
 	    <input type="hidden" name="pageNum" id="pageNum" value="<%=pageNum %>"/>
 		<input type="hidden" name="num" id="num" value="<%=num %>"/>
 	        <div class="row">
@@ -90,8 +88,8 @@ TipBoardVO tipBoardVO = tipBoardDao.getboardTip(num);
 	                <textarea name="content" class="form-control" name="content" id="content" cols="30" rows="10" placeholder="Comment"></textarea>
 	            </div>
 	            <div class="col-12">
-	                <input class="btn bueno-btn mt-30" type="button" value="목록보기" onclick="location.href='tip_board.jsp?pageNum=<%=pageNum %>';">
-	                <input class="btn bueno-btn mt-30" type="submit" value="답글쓰기" id="rewrite">
+	                <button class="btn bueno-btn mt-30" type="button" onclick="location.href='tip_board.jsp?pageNum=<%=pageNum %>';">목록보기</button>
+	                <button class="btn bueno-btn mt-30" type="button" id="rewrite">답글쓰기</button>
 	            </div>
 	        </div>
 	    </form>
@@ -106,6 +104,9 @@ TipBoardVO tipBoardVO = tipBoardDao.getboardTip(num);
 	</c:if>
 </div>
 
+	<!-- ##### All Javascript Script ##### -->
+	<jsp:include page="../include/common_script.jsp" />
+	
 <script>
 $('#rewrite').click(function () {
 	var num = $('#num').val();
@@ -115,24 +116,24 @@ $('#rewrite').click(function () {
 	
 	$.ajax({
 		url: 'commentwrite.jsp',
-		data: {num: num, pageNum: pageNum, name: name, content: content},
+		data: { num:num, pageNum:pageNum, name:name, content:content },
+		datatype: 'json',
 		success: function (data) {
-			console.log(data);
-			$.each(data, function (index, item) {
-				$('#comment_name') = item.name;
-				
-			}) {
-				
-			}
-			
-			
+			console.log(data);			
+		}, error: function () {
+			console.log("ㅁㄴㅇ");
+		}, complete: function () {
+			getCommentList()
 		}
 	});
 });
 
+</script>
+<script>
+function getCommentList() {
+	
+}
 
 </script>
-
-
 </body>
 </html>

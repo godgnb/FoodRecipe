@@ -1,6 +1,7 @@
 --------------------------------------------------------
---  파일이 생성됨 - 목요일-9월-26-2019   
+--  파일이 생성됨 - 화요일-10월-22-2019   
 --------------------------------------------------------
+DROP TABLE "ADMIN"."TIPBOARD";
 --------------------------------------------------------
 --  DDL for Table TIPBOARD
 --------------------------------------------------------
@@ -14,10 +15,7 @@
 	"READCOUNT" NUMBER, 
 	"COMMCOUNT" NUMBER, 
 	"IP" VARCHAR2(20 BYTE), 
-	"REG_DATE" DATE, 
-	"RE_REF" NUMBER, 
-	"RE_LEV" NUMBER, 
-	"RE_SEQ" NUMBER
+	"REG_DATE" DATE
    ) SEGMENT CREATION IMMEDIATE 
   PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
   STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
@@ -38,11 +36,6 @@
    COMMENT ON COLUMN "ADMIN"."TIPBOARD"."COMMCOUNT" IS '댓글수';
    COMMENT ON COLUMN "ADMIN"."TIPBOARD"."IP" IS '작성자IP';
    COMMENT ON COLUMN "ADMIN"."TIPBOARD"."REG_DATE" IS '글작성일';
-   COMMENT ON COLUMN "ADMIN"."TIPBOARD"."RE_REF" IS '글 그룹';
-   COMMENT ON COLUMN "ADMIN"."TIPBOARD"."RE_LEV" IS '글 들여쓰기 레벨';
-   COMMENT ON COLUMN "ADMIN"."TIPBOARD"."RE_SEQ" IS '같은 글그룹 안에서의 글번호';
-REM INSERTING into ADMIN.TIPBOARD
-SET DEFINE OFF;
 --------------------------------------------------------
 --  DDL for Index TIPLIST_PK
 --------------------------------------------------------
@@ -56,9 +49,9 @@ SET DEFINE OFF;
 --  Constraints for Table TIPBOARD
 --------------------------------------------------------
 
+  ALTER TABLE "ADMIN"."TIPBOARD" MODIFY ("NUM" NOT NULL ENABLE);
   ALTER TABLE "ADMIN"."TIPBOARD" ADD CONSTRAINT "TIPLIST_PK" PRIMARY KEY ("NUM")
   USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
   STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
   PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
   TABLESPACE "SYSTEM"  ENABLE;
-  ALTER TABLE "ADMIN"."TIPBOARD" MODIFY ("NUM" NOT NULL ENABLE);

@@ -1,4 +1,3 @@
-<%@page import="com.recipe.dao.TipBoardDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -13,13 +12,14 @@
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
     <!-- Title -->
-    <title>Bueno</title>
+    <title>MongMong</title>
 
     <!-- Favicon -->
-    <link rel="icon" href="../img/core-img/favicon.ico">
+    <link rel="icon" href="${pageContext.request.contextPath}/resources/img/core-img/favicon.ico">
 
     <!-- Stylesheet -->
-    <link rel="stylesheet" href="../css/style.css">
+    <script href="${pageContext.request.contextPath}/resources/css/style.css"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css">
     
 <style>
 .list-form {
@@ -60,9 +60,6 @@
 </head>
 
 <body>
-    <!-- Preloader -->
-    	<jsp:include page="../include/preloader.jsp" />
-
     <!-- ##### Header Area Start ##### -->
    		<jsp:include page="../include/header.jsp" />
     <!-- ##### Header Area End ##### -->
@@ -74,7 +71,7 @@
 
 
     <!-- ##### Search Area Start ##### -->
-    <div class="bueno-search-area section-padding-100-0 pb-70 bg-img" style="background-image: url(../img/core-img/pattern.png);">
+    <div class="bueno-search-area section-padding-100-0 pb-70 bg-img" style="background-image: url(img/core-img/pattern.png);">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -141,10 +138,10 @@
                     <!-- Single Blog Post -->
                     <div class="single-blog-post style-1 d-flex flex-wrap mb-30">
                         <!-- Blog Thumbnail -->
-                        <form action="writeProcess.jsp" method="post" enctype="multipart/form-data" id="frm" name="frm" class="frm" onsubmit="return check();">
+                        <form action="write.do" method="post" enctype="multipart/form-data" id="frm" name="frm" class="frm" onsubmit="return check();">
                         	<div class="row">
 	                            <div class="col-12 col-lg-6">
-	                                <input type="text" class="list-form" name="id" value="${id}" readonly>
+	                                <input type="text" class="list-form" name="id" value="${ id }" readonly>
 	                            </div>
 	                            <div class="col-12 col-lg-6">
 	                                <input type="password" class="list-form" name="passwd" id="passwd" placeholder="Passward*">
@@ -161,7 +158,7 @@
 	                            <div class="listwirte">
 		                   			<input class="btn bueno-btn mt-30 mr-15" type="submit" value="글쓰기" >
 		                   			<input class="btn bueno-btn mt-30 mr-15" type="reset" value="다시쓰기" >
-		                   			<input class="btn bueno-btn mt-30 mr-15" type="button" value="목록보기" onclick="location.href='tip_board.jsp';">
+		                   			<input class="btn bueno-btn mt-30 mr-15" type="button" value="목록보기" onclick="location.href='tipboardForm.do';">
 		                        </div>
 	                        </div>
 	                    </form>    
@@ -183,7 +180,16 @@
 
 
     <!-- ##### All Javascript Script ##### -->
-		<jsp:include page="../include/common_script.jsp" />
+	<!-- jQuery-2.2.4 js -->
+	<script src="${pageContext.request.contextPath}/resources/js/jquery/jquery-2.2.4.min.js"></script>
+	<!-- Popper js -->
+	<script src="${pageContext.request.contextPath}/resources/js/bootstrap/popper.min.js"></script>
+	<!-- Bootstrap js -->
+	<script src="${pageContext.request.contextPath}/resources/js/bootstrap/bootstrap.min.js"></script>
+	<!-- All Plugins js -->
+	<script src="${pageContext.request.contextPath}/resources/js/plugins/plugins.js"></script>
+	<!-- Active js -->
+	<script src="${pageContext.request.contextPath}/resources/js/active.js"></script>
 
 <script>
 function check() {
